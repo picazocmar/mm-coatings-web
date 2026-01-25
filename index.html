@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M&M Coatings | Certificación ISO 9001</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        mm_navy: '#1B315E',
+                        mm_orange: '#E86C1F',
+                        mm_gray: '#F3F4F6',
+                        mm_dark: '#0f172a',
+                    },
+                    fontFamily: {
+                        sans: ['Open Sans', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+   <style>
+        body { font-family: 'Open Sans', sans-serif; }
+        h1, h2, h3, h4, .nav-link { font-family: 'Montserrat', sans-serif; }
+        
+        /* HERO SECTION */
+        .hero-section {
+            background-color: #1B315E; /* Color de seguridad */
+            
+            /* INTENTO 1: Carga directa sin comillas (a veces ayuda en local) */
+            background-image: linear-gradient(rgba(15, 23, 42, 0.90), rgba(27, 49, 94, 0.85)), url(fondo_hero.jpg);
+            
+            background-size: cover;
+            background-position: center center; /* Centrado vertical y horizontal para tu imagen cuadrada */
+            background-attachment: scroll; /* Cambiamos 'fixed' a 'scroll' porque 'fixed' a veces falla en móviles con imágenes grandes */
+        }
+
+        .tech-bg {
+            background-color: #0f172a;
+            background-image: linear-gradient(#1e293b 1px, transparent 1px), linear-gradient(to right, #1e293b 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        /* ANIMACIÓN PULSO - VERDE (QUALITY OK) */
+        .iso-badge {
+            animation: pulse-green 3s infinite;
+        }
+        @keyframes pulse-green {
+            0% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.4); } 
+            70% { box-shadow: 0 0 0 10px rgba(74, 222, 128, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+        }
+    </style>
+</head>
+<body class="text-slate-700 antialiased flex flex-col min-h-screen">
+
+    <nav class="bg-white/95 backdrop-blur border-b border-gray-200 fixed w-full z-50 shadow-sm transition-all duration-300">
+        <div class="container mx-auto px-6 h-24 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-4">
+                <img src="MM_vectorized_HOR.png" alt="M&M Coating" class="h-16 w-auto object-contain hidden md:block">
+                <span class="md:hidden font-heading font-extrabold text-2xl text-mm_navy">M&M COATINGS</span>
+            </a>
+
+            <div class="hidden md:flex space-x-8 text-sm font-bold text-slate-600 items-center">
+                <div class="flex items-center px-3 py-1 bg-green-50 rounded border border-green-200">
+                    <span class="text-xs text-mm_navy font-extrabold">ISO 9001:2015</span>
+                    <svg class="w-4 h-4 ml-1 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                </div>
+
+                <a href="#soluciones" class="hover:text-mm_orange transition uppercase tracking-wide">Procesos</a>
+                <a href="#maquinaria" class="hover:text-mm_orange transition uppercase tracking-wide">Tecnología</a>
+                <a href="mailto:ventas@mmcoatings.com.mx" class="ml-4 bg-mm_navy text-white px-6 py-3 rounded shadow hover:bg-mm_orange transition">
+                    Cotizar
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-section h-screen flex items-center relative">
+        <div class="container mx-auto px-6 relative z-10 text-white mt-16">
+            <div class="max-w-4xl">
+                
+                <div class="inline-flex items-center gap-3 px-4 py-2 border border-green-500 bg-mm_navy/90 backdrop-blur mb-8 rounded iso-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span class="text-sm font-bold tracking-widest uppercase text-white">Empresa Certificada ISO 9001</span>
+                </div>
+
+                <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-6">
+                    Recubrimientos Técnicos <br/> de Estándar Global.
+                </h1>
+                <p class="text-xl text-gray-300 mb-10 font-light max-w-2xl leading-relaxed">
+                    Especialistas en <strong>Zinc Flake, Zinc Níquel y Fosfatos</strong>. 
+                    Nuestros procesos cumplen rigurosamente con las especificaciones de la industria automotriz y manufactura avanzada.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#maquinaria" class="bg-mm_orange text-white px-8 py-4 font-bold rounded shadow-lg hover:bg-orange-600 transition text-center flex items-center justify-center gap-2">
+                        Ver Tecnología Dip Spin
+                        <span>&darr;</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="maquinaria" class="py-24 tech-bg text-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-mm_navy/50 to-transparent pointer-events-none"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="lg:w-1/2">
+                    <h4 class="text-mm_orange font-bold tracking-[0.2em] uppercase text-sm mb-2">Diseño y Fabricación Propia</h4>
+                    <h2 class="text-4xl md:text-5xl font-extrabold mb-6">Sistema Dip Spin <br/>High-Efficiency</h2>
+                    <p class="text-gray-300 text-lg leading-relaxed mb-8">
+                        Garantizamos repetibilidad y calidad constante gracias a nuestra maquinaria de centrifugado diseñada in-house. Control total sobre velocidad, temperatura y tiempos de ciclo.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+                        <div class="border-l-2 border-mm_orange pl-4">
+                            <h5 class="font-bold text-white text-lg">ISO 9001 Compliant</h5>
+                            <p class="text-sm text-gray-400">Proceso validado y documentado bajo estándares internacionales.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2 w-full">
+                    <div class="relative group">
+                         <div class="absolute -inset-1 bg-gradient-to-r from-mm_orange to-blue-600 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+                         <div class="relative bg-slate-800 rounded-lg aspect-video border border-slate-700 overflow-hidden shadow-2xl flex items-center justify-center">
+                            <img src="render_maquina.png" alt="Diseño Maquinaria Dip Spin" class="w-full h-full object-cover">
+                         </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="soluciones" class="py-24 bg-slate-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-extrabold text-mm_navy">Soluciones Anticorrosivas</h2>
+                <div class="h-1 w-20 bg-mm_orange mx-auto mt-4 mb-6"></div>
+                <p class="text-slate-600 max-w-2xl mx-auto">Portafolio validado por OEMs para protección de componentes críticos.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 items-start">
+                
+                <div class="p-8 border-2 border-mm_navy shadow-xl rounded-xl bg-white relative overflow-hidden md:-mt-4 transform hover:-translate-y-1 transition duration-300">
+                    <div class="absolute top-0 right-0 bg-mm_navy text-white text-xs font-bold px-4 py-1 rounded-bl uppercase tracking-wider">Premium</div>
+                    <div class="flex justify-between items-start mb-6">
+                        <div>
+                             <h3 class="font-bold text-mm_navy text-2xl mb-1">Zinc Flake</h3>
+                             <p class="text-sm font-bold text-mm_orange uppercase tracking-wide">Aplicador Licenciado</p>
+                        </div>
+                        <img src="dorken_logo.png" alt="Dörken" class="h-12 w-auto object-contain opacity-90">
+                    </div>
+                    <p class="text-slate-600 mb-6 leading-relaxed">
+                        Tecnología oficial de **Dörken** para máxima protección catódica. Ideal para fasteners Clase 10.9 y 12.9.
+                    </p>
+                    <ul class="text-sm text-slate-500 space-y-3 border-t border-gray-100 pt-6">
+                        <li class="flex items-center"><span class="text-mm_orange font-bold mr-2">✓</span> Normas OEM globales.</li>
+                        <li class="flex items-center"><span class="text-mm_orange font-bold mr-2">✓</span> Coeficiente de fricción controlado.</li>
+                    </ul>
+                </div>
+
+                <div class="p-8 border border-slate-200 shadow rounded-xl bg-white hover:border-mm_orange transition">
+                    <h3 class="font-bold text-mm_navy text-xl mb-2">Zinc Níquel</h3>
+                    <p class="text-xs font-bold text-slate-400 uppercase mb-4">Aleación Electrolítica</p>
+                    <p class="text-sm text-slate-600">
+                        Resistencia térmica y a la corrosión roja superior. Acabados transparente y negro.
+                    </p>
+                </div>
+
+                <div class="p-8 border border-slate-200 shadow rounded-xl bg-white hover:border-mm_orange transition">
+                    <h3 class="font-bold text-mm_navy text-xl mb-2">Fosfatizado</h3>
+                    <p class="text-xs font-bold text-slate-400 uppercase mb-4">Zinc y Manganeso</p>
+                    <p class="text-sm text-slate-600">
+                        Reducción de fricción en componentes móviles y base de adherencia para vulcanizado.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-mm_navy text-white py-12 border-t border-blue-900 mt-auto">
+        <div class="container mx-auto px-6 grid md:grid-cols-3 gap-8 text-sm">
+            <div>
+                <span class="font-heading font-extrabold text-xl tracking-tight">M&M COATINGS</span>
+                <p class="text-blue-200 mt-4 leading-relaxed max-w-xs">
+                    Ingeniería de Superficies Certificada. Comprometidos con la calidad y la trazabilidad digital.
+                </p>
+            </div>
+            <div>
+                <h4 class="font-bold text-mm_orange mb-4 uppercase tracking-wider text-xs">Ubicación Planta</h4>
+                <p class="text-blue-100 leading-relaxed">
+                   Tarento 33<br>
+                   Chipilo de Francisco Javier Mina,<br>
+                   CP 74325, Puebla.<br>
+                </p>
+            </div>
+            <div class="md:text-right">
+                <h4 class="font-bold text-mm_orange mb-4 uppercase tracking-wider text-xs">Contacto</h4>
+                <a href="mailto:ventas@mmcoatings.com.mx" class="block text-lg font-bold hover:text-mm_orange transition mb-4">ventas@mmcoatings.com.mx</a>
+                <div class="flex gap-2 justify-start md:justify-end mt-4">
+                     <span class="bg-white/10 px-2 py-1 rounded text-xs border border-white/20">ISO 9001:2015</span>
+                     <span class="bg-white/10 px-2 py-1 rounded text-xs border border-white/20">Dörken Lic.</span>
+                </div>
+            </div>
+        </div>
+        <div class="container mx-auto px-6 mt-12 pt-8 border-t border-blue-900 text-center text-xs opacity-40">
+            &copy; 2026 M&M Coatings.
+        </div>
+    </footer>
+
+</body>
+</html>
