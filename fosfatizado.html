@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fosfatizado - M&M Coatings</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        mm_navy: '#1B315E',
+                        mm_orange: '#E86C1F',
+                        mm_gray: '#F3F4F6',
+                        mm_dark: '#0f172a',
+                    },
+                    fontFamily: {
+                        sans: ['Open Sans', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Open Sans', sans-serif; }
+        h1, h2, h3, h4, .nav-link { font-family: 'Montserrat', sans-serif; }
+        
+        .hero-fosfatizado {
+            /* 1. Fondo base negro para empatar con el lado oscuro de la foto */
+            background-color: #000000; 
+            /* 2. Degradado: Azul sólido -> Transición a Negro -> Transparente */
+            background-image: linear-gradient(
+                to right,
+                rgba(15, 23, 42, 1) 0%,
+                rgba(15, 23, 42, 1) 30%,
+                rgba(15, 23, 42, 0.8) 45%,
+                rgba(0, 0, 0, 0.6) 65%,
+                rgba(0, 0, 0, 0) 100%
+            ), url('fosfatizado_macro.jpg');
+            background-position: right center;
+            background-repeat: no-repeat;
+            /* En móvil lo dejamos como cover para que llene la pantalla vertical */
+            background-size: cover; 
+        }
+
+        /* TRUCO CSS: En pantallas grandes, ajustamos la imagen al 100% del alto en lugar de ancho. 
+           Esto "aleja" el engrane y evita que se recorte, mostrando su forma perfectamente */
+        @media (min-width: 768px) {
+            .hero-fosfatizado {
+                background-size: auto 100%; 
+            }
+        }
+    </style>
+</head>
+<body class="text-slate-700 antialiased flex flex-col min-h-screen bg-slate-50">
+
+    <nav class="bg-white border-b border-gray-200 fixed w-full z-50 shadow-md transition-all duration-300">
+        <div class="container mx-auto px-6 h-20 md:h-24 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-4 shrink-0">
+                <img src="MM_vectorized_HOR.png" alt="M&M Coating" class="h-10 md:h-16 w-auto object-contain">
+            </a>
+            <div class="hidden md:flex space-x-8 text-sm font-bold text-slate-600 items-center">
+                <div class="flex items-center px-3 py-1 bg-green-50 rounded border border-green-200">
+                    <span class="text-xs text-mm_navy font-extrabold">ISO 9001:2015</span>
+                </div>
+                <a href="index.html#soluciones" class="hover:text-mm_orange transition uppercase tracking-wide">Soluciones</a>
+                <a href="index.html#maquinaria" class="hover:text-mm_orange transition uppercase tracking-wide">Tecnología</a>
+                <a href="mailto:ventas@mmcoatings.com.mx" class="ml-4 bg-mm_navy text-white px-6 py-3 rounded shadow hover:bg-mm_orange transition font-bold">
+                    Cotizar
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-fosfatizado min-h-[60vh] md:min-h-[70vh] flex items-center relative pt-20">
+        <div class="container mx-auto px-6 relative z-10 text-white">
+            <div class="max-w-2xl">
+                <div class="inline-flex items-center gap-2 px-3 py-1 bg-mm_orange/20 border border-mm_orange text-mm_orange rounded mb-6">
+                    <span class="text-xs font-bold uppercase tracking-widest">Recubrimiento de Conversión</span>
+                </div>
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
+                    Fosfatizado
+                </h1>
+                <p class="text-lg text-gray-300 mb-8 font-light leading-relaxed">
+                    Estructura cristalina de alta porosidad. La solución técnica indispensable para la reducción de fricción en componentes de tren motriz y la base de anclaje definitiva para procesos de vulcanizado (caucho-metal) y recubrimientos posteriores.
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-16 md:py-24">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-extrabold text-mm_navy">Aplicaciones y Ventajas Clave</h2>
+                <div class="h-1 w-20 bg-mm_orange mx-auto mt-4"></div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Módulo 1 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 transform transition hover:-translate-y-1">
+                    <div class="h-48 bg-slate-800 relative">
+                        <!-- Se eliminó el div del degradado superpuesto. También se quitó opacity-80 para máximo brillo -->
+                        <img src="img_desgaste.jpg" alt="Antifricción Manganeso" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/1e293b/ffffff?text=Piezas+Powertrain'">
+                    </div>
+                    <div class="p-8">
+                        <h3 class="font-bold text-xl text-mm_navy mb-3">Antifricción (Powertrain)</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            El Fosfato de Manganeso crea una capa resistente al desgaste ideal para el "break-in" (asentamiento) de componentes internos del motor. Previene el contacto directo metal con metal en engranajes, árboles de levas y pistones durante sus primeros ciclos de vida.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Módulo 2 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 transform transition hover:-translate-y-1">
+                    <div class="h-48 bg-slate-800 relative">
+                         <!-- Se eliminó el div del degradado superpuesto y opacity-80 -->
+                        <img src="img_adherencia.jpg" alt="Vulcanizado Caucho Metal" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/1e293b/ffffff?text=Adherencia+Caucho-Metal'">
+                    </div>
+                    <div class="p-8">
+                        <h3 class="font-bold text-xl text-mm_navy mb-3">Adherencia Extrema (Primer)</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            El Fosfato de Zinc genera una red de micro-cristales porosos que actúan como "anclaje mecánico". Es el paso de preparación química obligatorio y más efectivo para piezas metálicas que serán sometidas a procesos de vulcanizado (soportes de motor) o aplicación de pintura E-Coat.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Módulo 3 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 transform transition hover:-translate-y-1">
+                    <div class="h-48 bg-slate-800 relative">
+                         <!-- Se eliminó el div del degradado superpuesto y opacity-80 -->
+                        <img src="img_lubricacion.jpg" alt="Retención de Aceites" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/1e293b/ffffff?text=Retencion+de+Aceites'">
+                    </div>
+                    <div class="p-8">
+                        <h3 class="font-bold text-xl text-mm_navy mb-3">Retención de Lubricantes</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Debido a su estructura capilar y alta porosidad microscópica, la capa de fosfato es excelente para absorber y retener aceites anticorrosivos, ceras y lubricantes secos. Esto extiende dramáticamente la vida de almacenamiento de las piezas y su eficiencia operativa.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-mm_navy text-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center gap-12 max-w-5xl mx-auto">
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl font-extrabold mb-4">Ingeniería de Superficies a Medida</h2>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        Controlamos minuciosamente los parámetros de baño (temperatura, acidez total, acidez libre y aceleradores) para garantizar que el peso y el tamaño del cristal cumplan con la especificación exacta de cada cliente, ya sea para micro-fosfatizado o capas pesadas.
+                    </p>
+                    <ul class="space-y-3 text-sm text-gray-200 font-semibold">
+                        <li class="flex items-center"><span class="text-mm_orange text-lg mr-3">✓</span> Elementos de Suspensión y Soportes</li>
+                        <li class="flex items-center"><span class="text-mm_orange text-lg mr-3">✓</span> Componentes de Transmisión</li>
+                        <li class="flex items-center"><span class="text-mm_orange text-lg mr-3">✓</span> Piezas de Estampado y Embutición</li>
+                    </ul>
+                </div>
+                <div class="md:w-1/2 bg-slate-800 p-8 rounded-xl border border-slate-700 shadow-2xl w-full">
+                    <h4 class="text-mm_orange font-bold uppercase tracking-widest text-xs mb-4">Tipos de Conversión</h4>
+                    <div class="space-y-4 text-sm">
+                        <div class="border-b border-slate-600 pb-3">
+                            <strong class="text-white block text-base">Fosfato de Zinc (Zn)</strong>
+                            <span class="text-gray-400">Excelente base para recubrimientos orgánicos, pintura electroforética y unión caucho-metal. Aspecto gris claro a oscuro.</span>
+                        </div>
+                        <div class="border-b border-slate-600 pb-3">
+                            <strong class="text-white block text-base">Fosfato de Manganeso (Mn)</strong>
+                            <span class="text-gray-400">Máxima dureza y retención de aceite para prevención de desgaste por fricción. Aspecto negro/gris muy oscuro.</span>
+                        </div>
+                        <div>
+                            <strong class="text-white block text-base">Sellados Complementarios</strong>
+                            <span class="text-gray-400">Tratamientos posteriores con aceites emulsificables o ceras para protección anticorrosiva extendida en transporte.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-white border-t border-slate-200">
+        <div class="container mx-auto px-6 text-center max-w-3xl">
+            <h3 class="text-2xl md:text-3xl font-extrabold text-mm_navy mb-4">¿Listo para validar tu proyecto?</h3>
+            <p class="text-slate-600 mb-8 leading-relaxed">
+                Nuestros ingenieros de superficies están listos para analizar tus planos técnicos y recomendarte el sistema de recubrimiento exacto que cumpla con la especificación de tu cliente.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="mailto:ventas@mmcoatings.com.mx" class="bg-mm_navy text-white font-bold py-3 px-8 rounded shadow-lg hover:bg-slate-800 transition">
+                    Enviar Planos (Email)
+                </a>
+                <a href="https://wa.me/525524493796?text=Hola,%20busco%20información%20sobre%20Fosfatizado" target="_blank" rel="noopener noreferrer" class="bg-mm_orange text-white font-bold py-3 px-8 rounded shadow-lg hover:bg-orange-600 transition flex items-center justify-center gap-2">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M12.031 0C5.394 0 0 5.394 0 12.031C0 14.654 0.852 17.07 2.274 19.034L0.518 24L5.617 22.257C7.513 23.493 9.704 24.185 12.031 24.185C18.667 24.185 24.062 18.791 24.062 12.154C24.062 5.518 18.667 0 12.031 0ZM12.031 22.146C10.026 22.146 8.163 21.576 6.577 20.617L6.2 20.393L2.738 21.558L3.921 18.175L3.666 17.771C2.569 16.082 1.942 14.116 1.942 12.031C1.942 6.471 6.471 1.942 12.031 1.942C17.59 1.942 22.119 6.471 22.119 12.031C22.119 17.59 17.59 22.146 12.031 22.146ZM17.606 15.176C17.3 15.023 15.801 14.283 15.526 14.181C15.251 14.08 15.047 14.029 14.843 14.334C14.639 14.639 14.078 15.302 13.899 15.506C13.721 15.71 13.542 15.735 13.237 15.582C12.931 15.429 11.948 15.109 10.785 14.072C9.822 13.213 9.157 12.203 8.979 11.897C8.801 11.592 8.96 11.426 9.113 11.274C9.25 11.137 9.418 10.923 9.571 10.745C9.724 10.567 9.775 10.44 9.877 10.236C9.979 10.032 9.928 9.854 9.852 9.701C9.775 9.549 9.113 7.919 8.833 7.257C8.56 6.611 8.282 6.7 8.088 6.69C7.904 6.681 7.701 6.681 7.497 6.681C7.293 6.681 6.962 6.757 6.682 7.063C6.402 7.368 5.612 8.081 5.612 9.533C5.612 10.985 6.709 12.387 6.862 12.591C7.015 12.795 8.941 15.765 11.905 17.042C12.61 17.346 13.161 17.53 13.593 17.669C14.3 17.893 14.945 17.861 15.457 17.785C16.03 17.7 17.3 17.013 17.555 16.249C17.81 15.485 17.81 14.823 17.606 15.176Z"/></svg>
+                    Asesoría WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-mm_navy text-white py-12 border-t border-blue-900 mt-auto">
+        <div class="container mx-auto px-6 grid md:grid-cols-3 gap-8 text-sm">
+            <div>
+                <span class="font-heading font-extrabold text-xl tracking-tight uppercase">M&M COATINGS</span>
+                <p class="text-blue-200 mt-4 leading-relaxed max-w-xs">
+                    Ingeniería de Superficies Certificada. Comprometidos con la calidad y la trazabilidad digital.
+                </p>
+            </div>
+            <div>
+                <h4 class="font-bold text-mm_orange mb-4 uppercase tracking-wider text-xs">Ubicación Planta</h4>
+                <p class="text-blue-100 leading-relaxed font-semibold">
+                   Tarento 33<br>
+                   Chipilo de Francisco Javier Mina<br>
+                   CP 74325, Puebla
+                </p>
+            </div>
+            <div class="md:text-right flex flex-col md:items-end">
+                <h4 class="font-bold text-mm_orange mb-4 uppercase tracking-wider text-xs font-heading">Contacto Directo</h4>
+                <a href="mailto:ventas@mmcoatings.com.mx" class="block text-lg font-bold hover:text-mm_orange transition mb-2">ventas@mmcoatings.com.mx</a>
+                <div class="flex gap-2 justify-start md:justify-end mt-4">
+                     <span class="bg-white/10 px-2 py-1 rounded text-[10px] font-bold border border-white/20">ISO 9001:2015</span>
+                     <span class="bg-white/10 px-2 py-1 rounded text-[10px] font-bold border border-white/20">Dörken Lic.</span>
+                </div>
+            </div>
+        </div>
+        <div class="container mx-auto px-6 mt-12 pt-8 border-t border-blue-900 text-center text-[10px] opacity-40 uppercase tracking-widest">
+            &copy; 2026 M&M Coatings.
+        </div>
+    </footer>
+
+</body>
+</html>
