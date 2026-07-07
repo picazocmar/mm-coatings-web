@@ -87,37 +87,56 @@
 </head>
 <body class="text-slate-700 antialiased flex flex-col min-h-screen">
 
+    <!-- Bloque de Navegación Universal Unificado -->
     <nav class="bg-white border-b border-gray-200 fixed w-full z-50 shadow-md transition-all duration-300">
         <div class="container mx-auto px-6 h-20 md:h-24 flex justify-between items-center">
             
-            <a href="#" class="flex items-center gap-4 shrink-0">
+            <a href="index.html" class="flex items-center gap-4 shrink-0">
                 <img src="MM_vectorized_HOR.png" alt="M&M Coating" class="h-10 md:h-16 w-auto object-contain">
             </a>
 
+            <!-- Menú Escritorio -->
             <div class="hidden md:flex space-x-8 text-sm font-bold text-slate-600 items-center">
                 <div class="flex items-center px-3 py-1 bg-green-50 rounded border border-green-200">
                     <span class="text-xs text-mm_navy font-extrabold">ISO 9001:2015</span>
                     <svg class="w-4 h-4 ml-1 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
                 </div>
-                <a href="#soluciones" class="hover:text-mm_orange transition uppercase tracking-wide">Soluciones</a>
-                <a href="#maquinaria" class="hover:text-mm_orange transition uppercase tracking-wide">Tecnología</a>
-                <a href="mailto:ventas@mmcoatings.com.mx" class="ml-4 bg-mm_navy text-white px-6 py-3 rounded shadow hover:bg-mm_orange transition font-bold">
+                <a href="index.html" class="hover:text-mm_orange transition uppercase tracking-wide">Inicio</a>
+                <a href="index.html#soluciones" class="hover:text-mm_orange transition uppercase tracking-wide">Soluciones</a>
+                <a href="index.html#maquinaria" class="hover:text-mm_orange transition uppercase tracking-wide">Tecnología</a>
+                
+                <!-- Enlace a Intranet ERP -->
+                <a href="https://script.google.com/macros/s/AKfycbzK639tehdQ-lqx-h9DfQaN3QqDe1p2KcAotXbA898ozInmiDRpwkrmf-wZY0lKDQ_HCQ/exec" target="_blank" rel="noopener noreferrer" class="hover:text-mm_navy text-slate-400 transition uppercase tracking-wide flex items-center gap-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                    Intranet
+                </a>
+
+                <a href="cotizar.html" class="ml-4 bg-mm_navy text-white px-6 py-3 rounded shadow hover:bg-mm_orange transition font-bold">
                     Cotizar
                 </a>
             </div>
 
+            <!-- Menú Móvil -->
             <div class="md:hidden flex items-center gap-2">
                 <div class="flex items-center px-2 py-1 bg-green-50 rounded border border-green-200">
                     <span class="text-[10px] text-mm_navy font-extrabold">ISO 9001</span>
                 </div>
-                <a href="mailto:ventas@mmcoatings.com.mx" class="text-xs font-bold text-white bg-mm_navy px-4 py-2 rounded shadow">
+                <!-- Mini enlace a intranet en móvil -->
+                <a href="https://script.google.com/macros/s/AKfycbzK639tehdQ-lqx-h9DfQaN3QqDe1p2KcAotXbA898ozInmiDRpwkrmf-wZY0lKDQ_HCQ/exec" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-mm_navy px-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                </a>
+                <a href="cotizar.html" class="text-xs font-bold text-white bg-mm_navy px-4 py-2 rounded shadow">
                     COTIZAR
                 </a>
             </div>
         </div>
     </nav>
 
-        <header class="hero-section min-h-[85vh] md:h-screen flex items-center relative pt-20 md:pt-0">
+    <header class="hero-section min-h-[85vh] md:h-screen flex items-center relative pt-20 md:pt-0">
         <div class="container mx-auto px-6 relative z-10 text-white mt-8 md:mt-16">
             <div class="max-w-4xl">
                 <div class="inline-flex items-center gap-3 px-4 py-2 border border-green-500 bg-mm_navy/90 backdrop-blur mb-6 rounded iso-badge">
@@ -128,8 +147,8 @@
                 </div>
 
                 <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold leading-[0.92] tracking-tight mb-8">
-                    Recubrimientos
-                    Técnicos de Alta
+                    Recubrimientos<br/>
+                    Técnicos de Alta<br/>
                     Especificación.
                 </h1>
                 <p class="text-lg md:text-xl text-slate-300 mb-10 font-light leading-relaxed max-w-xl">
@@ -144,8 +163,8 @@
                     </a>
                 </div>
             </div>
-        <div
-            class="absolute right-0 top-0 w-[40%] h-full pointer-events-none"
+        </div>
+        <div class="absolute right-0 top-0 w-[40%] h-full pointer-events-none"
             style="
                 background: radial-gradient(
                     circle at center,
@@ -154,7 +173,7 @@
                     rgba(255,255,255,0.00) 70%
                 );
             ">
-    
+        </div>
     </header>
 
     <section id="maquinaria" class="py-16 md:py-24 tech-bg text-white relative overflow-hidden">

@@ -58,19 +58,50 @@
 </head>
 <body class="text-slate-700 antialiased flex flex-col min-h-screen bg-slate-50">
 
+    <!-- Bloque de Navegación Universal Unificado -->
     <nav class="bg-white border-b border-gray-200 fixed w-full z-50 shadow-md transition-all duration-300">
         <div class="container mx-auto px-6 h-20 md:h-24 flex justify-between items-center">
+            
             <a href="index.html" class="flex items-center gap-4 shrink-0">
                 <img src="MM_vectorized_HOR.png" alt="M&M Coating" class="h-10 md:h-16 w-auto object-contain">
             </a>
+
+            <!-- Menú Escritorio -->
             <div class="hidden md:flex space-x-8 text-sm font-bold text-slate-600 items-center">
                 <div class="flex items-center px-3 py-1 bg-green-50 rounded border border-green-200">
                     <span class="text-xs text-mm_navy font-extrabold">ISO 9001:2015</span>
+                    <svg class="w-4 h-4 ml-1 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
                 </div>
+                <a href="index.html" class="hover:text-mm_orange transition uppercase tracking-wide">Inicio</a>
                 <a href="index.html#soluciones" class="hover:text-mm_orange transition uppercase tracking-wide">Soluciones</a>
                 <a href="index.html#maquinaria" class="hover:text-mm_orange transition uppercase tracking-wide">Tecnología</a>
-                <a href="mailto:ventas@mmcoatings.com.mx" class="ml-4 bg-mm_navy text-white px-6 py-3 rounded shadow hover:bg-mm_orange transition font-bold">
+                
+                <!-- Enlace a Intranet ERP -->
+                <a href="https://script.google.com/macros/s/AKfycbzK639tehdQ-lqx-h9DfQaN3QqDe1p2KcAotXbA898ozInmiDRpwkrmf-wZY0lKDQ_HCQ/exec" target="_blank" rel="noopener noreferrer" class="hover:text-mm_navy text-slate-400 transition uppercase tracking-wide flex items-center gap-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                    Intranet
+                </a>
+
+                <a href="cotizar.html" class="ml-4 bg-mm_navy text-white px-6 py-3 rounded shadow hover:bg-mm_orange transition font-bold">
                     Cotizar
+                </a>
+            </div>
+
+            <!-- Menú Móvil -->
+            <div class="md:hidden flex items-center gap-2">
+                <div class="flex items-center px-2 py-1 bg-green-50 rounded border border-green-200">
+                    <span class="text-[10px] text-mm_navy font-extrabold">ISO 9001</span>
+                </div>
+                <!-- Mini enlace a intranet en móvil -->
+                <a href="https://script.google.com/macros/s/AKfycbzK639tehdQ-lqx-h9DfQaN3QqDe1p2KcAotXbA898ozInmiDRpwkrmf-wZY0lKDQ_HCQ/exec" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-mm_navy px-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                </a>
+                <a href="cotizar.html" class="text-xs font-bold text-white bg-mm_navy px-4 py-2 rounded shadow">
+                    COTIZAR
                 </a>
             </div>
         </div>
@@ -103,7 +134,6 @@
                 <!-- Módulo 1 -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 transform transition hover:-translate-y-1">
                     <div class="h-48 bg-slate-800 relative">
-                        <!-- Se eliminó el div del degradado superpuesto. También se quitó opacity-80 para máximo brillo -->
                         <img src="img_desgaste.jpg" alt="Antifricción Manganeso" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/1e293b/ffffff?text=Piezas+Powertrain'">
                     </div>
                     <div class="p-8">
@@ -117,7 +147,6 @@
                 <!-- Módulo 2 -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 transform transition hover:-translate-y-1">
                     <div class="h-48 bg-slate-800 relative">
-                         <!-- Se eliminó el div del degradado superpuesto y opacity-80 -->
                         <img src="img_adherencia.jpg" alt="Vulcanizado Caucho Metal" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/1e293b/ffffff?text=Adherencia+Caucho-Metal'">
                     </div>
                     <div class="p-8">
@@ -131,7 +160,6 @@
                 <!-- Módulo 3 -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 transform transition hover:-translate-y-1">
                     <div class="h-48 bg-slate-800 relative">
-                         <!-- Se eliminó el div del degradado superpuesto y opacity-80 -->
                         <img src="img_lubricacion.jpg" alt="Retención de Aceites" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/1e293b/ffffff?text=Retencion+de+Aceites'">
                     </div>
                     <div class="p-8">
@@ -180,6 +208,7 @@
         </div>
     </section>
 
+    <!-- Botón de Acción Principal Redirigido a cotizar.html -->
     <section class="py-16 bg-white border-t border-slate-200">
         <div class="container mx-auto px-6 text-center max-w-3xl">
             <h3 class="text-2xl md:text-3xl font-extrabold text-mm_navy mb-4">¿Listo para validar tu proyecto?</h3>
@@ -187,8 +216,8 @@
                 Nuestros ingenieros de superficies están listos para analizar tus planos técnicos y recomendarte el sistema de recubrimiento exacto que cumpla con la especificación de tu cliente.
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="mailto:ventas@mmcoatings.com.mx" class="bg-mm_navy text-white font-bold py-3 px-8 rounded shadow-lg hover:bg-slate-800 transition">
-                    Enviar Planos (Email)
+                <a href="cotizar.html" class="bg-mm_navy text-white font-bold py-3 px-8 rounded shadow-lg hover:bg-slate-800 transition">
+                    Enviar Planos / Cotizar
                 </a>
                 <a href="https://wa.me/525524493796?text=Hola,%20busco%20información%20sobre%20Fosfatizado" target="_blank" rel="noopener noreferrer" class="bg-mm_orange text-white font-bold py-3 px-8 rounded shadow-lg hover:bg-orange-600 transition flex items-center justify-center gap-2">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M12.031 0C5.394 0 0 5.394 0 12.031C0 14.654 0.852 17.07 2.274 19.034L0.518 24L5.617 22.257C7.513 23.493 9.704 24.185 12.031 24.185C18.667 24.185 24.062 18.791 24.062 12.154C24.062 5.518 18.667 0 12.031 0ZM12.031 22.146C10.026 22.146 8.163 21.576 6.577 20.617L6.2 20.393L2.738 21.558L3.921 18.175L3.666 17.771C2.569 16.082 1.942 14.116 1.942 12.031C1.942 6.471 6.471 1.942 12.031 1.942C17.59 1.942 22.119 6.471 22.119 12.031C22.119 17.59 17.59 22.146 12.031 22.146ZM17.606 15.176C17.3 15.023 15.801 14.283 15.526 14.181C15.251 14.08 15.047 14.029 14.843 14.334C14.639 14.639 14.078 15.302 13.899 15.506C13.721 15.71 13.542 15.735 13.237 15.582C12.931 15.429 11.948 15.109 10.785 14.072C9.822 13.213 9.157 12.203 8.979 11.897C8.801 11.592 8.96 11.426 9.113 11.274C9.25 11.137 9.418 10.923 9.571 10.745C9.724 10.567 9.775 10.44 9.877 10.236C9.979 10.032 9.928 9.854 9.852 9.701C9.775 9.549 9.113 7.919 8.833 7.257C8.56 6.611 8.282 6.7 8.088 6.69C7.904 6.681 7.701 6.681 7.497 6.681C7.293 6.681 6.962 6.757 6.682 7.063C6.402 7.368 5.612 8.081 5.612 9.533C5.612 10.985 6.709 12.387 6.862 12.591C7.015 12.795 8.941 15.765 11.905 17.042C12.61 17.346 13.161 17.53 13.593 17.669C14.3 17.893 14.945 17.861 15.457 17.785C16.03 17.7 17.3 17.013 17.555 16.249C17.81 15.485 17.81 14.823 17.606 15.176Z"/></svg>
