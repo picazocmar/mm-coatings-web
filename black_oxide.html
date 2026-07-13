@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pintura Industrial DTM/DTS - M&M Coatings</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        mm_navy: '#1B315E',
+                        mm_orange: '#E86C1F',
+                        mm_gray: '#F3F4F6',
+                        mm_dark: '#0f172a',
+                    },
+                    fontFamily: {
+                        sans: ['Open Sans', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Open Sans', sans-serif; }
+        h1, h2, h3, h4, .nav-link { font-family: 'Montserrat', sans-serif; }
+        
+        .hero-pintura {
+            background-color: #0f172a;
+            background-image: linear-gradient(
+                to right,
+                rgba(15, 23, 42, 1) 0%,
+                rgba(15, 23, 42, 0.95) 30%,
+                rgba(15, 23, 42, 0.8) 50%,
+                rgba(0, 0, 0, 0.4) 75%,
+                rgba(0, 0, 0, 0) 100%
+            ), url('https://placehold.co/1920x1080/0f172a/ffffff?text=Pintura+Industrial+Dorken+High+Spec');
+            background-position: center right;
+            background-repeat: no-repeat;
+            background-size: cover; 
+        }
+    </style>
+</head>
+<body class="text-slate-700 antialiased flex flex-col min-h-screen bg-slate-50">
+
+    <!-- Bloque de Navegación Universal Unificado -->
+    <nav class="bg-white border-b border-gray-200 fixed w-full z-50 shadow-md transition-all duration-300">
+        <div class="container mx-auto px-6 h-20 md:h-24 flex justify-between items-center">
+            
+            <a href="index.html" class="flex items-center gap-4 shrink-0">
+                <img src="MM_vectorized_HOR.png" alt="M&M Coating" class="h-10 md:h-16 w-auto object-contain">
+            </a>
+
+            <!-- Menú Escritorio -->
+            <div class="hidden md:flex space-x-8 text-sm font-bold text-slate-600 items-center">
+                <div class="flex items-center px-3 py-1 bg-green-50 rounded border border-green-200">
+                    <span class="text-xs text-mm_navy font-extrabold">ISO 9001:2015</span>
+                    <svg class="w-4 h-4 ml-1 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                </div>
+                <a href="index.html" class="hover:text-mm_orange transition uppercase tracking-wide">Inicio</a>
+                <a href="index.html#soluciones" class="hover:text-mm_orange transition uppercase tracking-wide">Soluciones</a>
+                <a href="index.html#maquinaria" class="hover:text-mm_orange transition uppercase tracking-wide">Tecnología</a>
+                <!-- Enlace de Servicios (NUEVO) -->
+                <a href="servicios.html" class="hover:text-mm_orange transition uppercase tracking-wide text-mm_navy font-extrabold">Servicios</a>
+                
+                <!-- Enlace a Intranet ERP -->
+                <a href="https://script.google.com/macros/s/AKfycbzK639tehdQ-lqx-h9DfQaN3QqDe1p2KcAotXbA898ozInmiDRpwkrmf-wZY0lKDQ_HCQ/exec" target="_blank" rel="noopener noreferrer" class="hover:text-mm_navy text-slate-400 transition uppercase tracking-wide flex items-center gap-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                    Intranet
+                </a>
+
+                <a href="cotizar.html" class="ml-4 bg-mm_navy text-white px-6 py-3 rounded shadow hover:bg-mm_orange transition font-bold">
+                    Cotizar
+                </a>
+            </div>
+
+            <!-- Menú Móvil -->
+            <div class="md:hidden flex items-center gap-2">
+                <div class="flex items-center px-2 py-1 bg-green-50 rounded border border-green-200">
+                    <span class="text-[10px] text-mm_navy font-extrabold">ISO 9001</span>
+                </div>
+                <!-- Mini enlace a intranet en móvil -->
+                <a href="https://script.google.com/macros/s/AKfycbzK639tehdQ-lqx-h9DfQaN3QqDe1p2KcAotXbA898ozInmiDRpwkrmf-wZY0lKDQ_HCQ/exec" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-mm_navy px-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                </a>
+                <a href="cotizar.html" class="text-xs font-bold text-white bg-mm_navy px-4 py-2 rounded shadow">
+                    COTIZAR
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+
+    <header class="hero-pintura min-h-[60vh] md:min-h-[75vh] flex items-center relative pt-20">
+        <div class="container mx-auto px-6 relative z-10 text-white">
+            <div class="max-w-3xl">
+                <div class="inline-flex items-center gap-2 px-3 py-1 bg-mm_orange/20 border border-mm_orange text-mm_orange rounded mb-6">
+                    <span class="text-xs font-bold uppercase tracking-widest">Sistemas Homologados Dörken®</span>
+                </div>
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
+                    Pintura Industrial<br/>DTM / DTS
+                </h1>
+                <p class="text-lg text-gray-300 mb-8 font-light leading-relaxed">
+                    Sistemas monocomponente y bicomponente de aplicación directa al metal sin imprimación especial. Máxima productividad en planta con protección anticorrosiva certificada bajo la norma internacional <strong class="text-white">DIN EN ISO 12944</strong>.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#calculador" class="bg-mm_orange hover:bg-orange-600 text-white font-bold py-3 px-6 rounded shadow transition">
+                        Calcular Categoría ISO 12944
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-mm_navy mb-4">Ingeniería Química de Última Generación</h2>
+                <p class="text-slate-600 text-lg leading-relaxed">
+                    La tecnología <strong class="text-mm_navy">DTM (Direct-to-Metal)</strong> y <strong class="text-mm_navy">DTS (Direct-to-Substrate)</strong> de Dörken representa un salto evolutivo en los recubrimientos líquidos. Al integrar la imprimación anticorrosiva activa y el acabado estético en una sola fórmula, optimizamos drásticamente los flujos de trabajo en naves industriales sin comprometer la vida útil de la estructura.
+                </p>
+                <div class="h-1 w-20 bg-mm_orange mx-auto mt-6"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+                <!-- Tarjeta 1: 1K DTM -->
+                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-8 relative overflow-hidden shadow-sm hover:shadow-md transition">
+                    <div class="absolute top-0 right-0 bg-slate-200 text-slate-800 text-xs font-bold px-4 py-1 rounded-bl uppercase tracking-wider">Monocomponente</div>
+                    <span class="text-mm_orange font-bold uppercase text-xs tracking-wider font-heading">DÖRKEN® 1K DTM</span>
+                    <h3 class="text-2xl font-bold text-mm_navy mt-1 mb-4">Protop Satin</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed mb-6">
+                        Laca industrial de secado ultrarrápido a base de solvente con pigmentos anticorrosivos activos. Diseñada para un acabado satinado homogéneo directamente sobre metales ferrosos y no ferrosos en interiores y exteriores.
+                    </p>
+                    <h4 class="text-xs font-extrabold text-slate-500 uppercase tracking-widest mb-2">Sustratos Principales:</h4>
+                    <div class="grid grid-cols-2 gap-2 text-xs font-semibold text-slate-700 mb-6">
+                        <span class="flex items-center"><span class="w-1.5 h-1.5 bg-mm_orange rounded-full mr-2"></span> Hierro y Acero</span>
+                        <span class="flex items-center"><span class="w-1.5 h-1.5 bg-mm_orange rounded-full mr-2"></span> Aluminio</span>
+                        <span class="flex items-center"><span class="w-1.5 h-1.5 bg-mm_orange rounded-full mr-2"></span> Acero Galvanizado</span>
+                        <span class="flex items-center"><span class="w-1.5 h-1.5 bg-mm_orange rounded-full mr-2"></span> Pinturas Antiguas</span>
+                    </div>
+                    <div class="border-t border-slate-200 pt-4 flex justify-between items-center text-xs text-slate-500">
+                        <span>Espesor recomendado: <strong>60 µm (Seco)</strong></span>
+                        <span>Rendimiento: <strong>8 m²/L</strong></span>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 2: 2K DTS -->
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-8 relative overflow-hidden text-white shadow-xl">
+                    <div class="absolute top-0 right-0 bg-mm_orange text-white text-xs font-bold px-4 py-1 rounded-bl uppercase tracking-wider">Bicomponente</div>
+                    <span class="text-mm_orange font-bold uppercase text-xs tracking-wider font-heading">DÖRKEN® 2K DTS</span>
+                    <h3 class="text-2xl font-bold text-white mt-1 mb-4">Matt 20 / Satin 40</h3>
+                    <p class="text-sm text-slate-300 leading-relaxed mb-6">
+                        La innovación definitiva a base de poliuretano acrílico con aditivo endurecedor (relación 7:1). Ofrece una resistencia extrema a la intemperie, aceites minerales, combustibles y agentes químicos, permitiendo incluso el pintado húmedo sobre húmedo.
+                    </p>
+                    <h4 class="text-xs font-extrabold text-slate-400 uppercase tracking-widest mb-2">Adherencia Universal en Sustratos Difíciles:</h4>
+                    <div class="grid grid-cols-2 gap-2 text-xs font-semibold text-slate-300 mb-6">
+                        <span class="flex items-center"><span class="w-1.5 h-1.5 bg-mm_orange rounded-full mr-2"></span> Acero Inoxidable</span>
+                        <span class="flex items-center"><span class="w-1.5 h-1.5 bg-mm_orange rounded-full mr-2"></span> Plásticos (PVC, ABS)</span>
+                        <span class="flex items-center"><span class="w-1.5 h-1.5 bg-mm_orange rounded-full mr-2"></span> Pinturas en Polvo</span>
+                        <span class="flex items-center"><span class="w-1.5 h-1.5 bg-mm_orange rounded-full mr-2"></span> Hormigón y Madera</span>
+                    </div>
+                    <div class="border-t border-slate-800 pt-4 flex justify-between items-center text-xs text-slate-400">
+                        <span>Resistencia térmica: <strong>Hasta 150 °C</strong></span>
+                        <span>Protección extrema: <strong>Hasta C5</strong></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="calculador" class="py-16 md:py-24 bg-slate-900 text-white relative">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-3xl mx-auto text-center mb-12">
+                <h4 class="text-mm_orange font-bold uppercase tracking-widest text-xs mb-2">Ingeniería Normativa</h4>
+                <h2 class="text-3xl md:text-5xl font-extrabold mb-4">Clasificación de Ambientes DIN EN ISO 12944</h2>
+                <p class="text-slate-400 text-sm md:text-base leading-relaxed">
+                    Utilice nuestro selector dinámico para evaluar la agresividad de su entorno y determinar el esquema de recubrimiento óptimo bajo la norma internacional de durabilidad.
+                </p>
+            </div>
+
+            <!-- Interfaz Interactiva de Selección de Corrosión -->
+            <div class="bg-slate-800 rounded-2xl border border-slate-700 p-6 md:p-10 max-w-5xl mx-auto shadow-2xl">
+                <div class="grid md:grid-cols-12 gap-8">
+                    <!-- Columna de Selección -->
+                    <div class="md:col-span-5 space-y-4">
+                        <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Paso 1: Seleccione el Tipo de Entorno</label>
+                        <div class="grid grid-cols-2 gap-3" id="envButtons">
+                            <button onclick="setEnvironment('interior')" id="btn-interior" class="bg-mm_orange text-white font-bold p-3 rounded-lg text-sm transition focus:outline-none flex flex-col items-center gap-1 border-2 border-transparent">
+                                <span>🏠 Interior</span>
+                            </button>
+                            <button onclick="setEnvironment('exterior')" id="btn-exterior" class="bg-slate-700 text-slate-300 font-bold p-3 rounded-lg text-sm transition focus:outline-none flex flex-col items-center gap-1 border-2 border-transparent">
+                                <span>🌳 Exterior</span>
+                            </button>
+                        </div>
+
+                        <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest pt-2">Paso 2: Elija la Condición Ambiental</label>
+                        <select id="conditionSelect" onchange="calculateCorrosivity()" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-3 text-sm text-white focus:outline-none focus:border-mm_orange">
+                            <!-- Opciones cargadas dinámicamente -->
+                        </select>
+                    </div>
+
+                    <!-- Columna de Diagnóstico Técnico -->
+                    <div class="md:col-span-7 bg-slate-900 border border-slate-700 rounded-xl p-6 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-center border-b border-slate-800 pb-3 mb-4">
+                                <span class="text-xs font-bold uppercase text-slate-400 tracking-wider">Diagnóstico de Ingeniería</span>
+                                <span id="lblClass" class="bg-slate-800 text-mm_orange border border-mm_orange/40 text-xs font-extrabold px-3 py-1 rounded">Clase: C3</span>
+                            </div>
+                            <h4 id="lblTitle" class="text-lg font-bold text-white mb-2">Ambiente de Corrosividad Moderada</h4>
+                            <p id="lblDescription" class="text-xs md:text-sm text-slate-400 leading-relaxed mb-4">
+                                Áreas de producción con alta humedad y aire bajo en contaminación industrial, tales como cervecerías, lavanderías o procesadoras de alimentos.
+                            </p>
+                        </div>
+
+                        <div class="bg-slate-800/80 rounded-lg p-4 border border-slate-700/60">
+                            <span class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2">Esquema de Pintura Recomendado (Dörken)</span>
+                            <div class="grid grid-cols-2 gap-4 text-xs">
+                                <div>
+                                    <span class="text-slate-400 block">Sistema:</span>
+                                    <strong id="lblRecommendedSystem" class="text-white block text-sm">2K DTS Matt/Satin</strong>
+                                </div>
+                                <div>
+                                    <span class="text-slate-400 block">Espesor de Película Seca (TSD):</span>
+                                    <strong id="lblRecommendedDFT" class="text-white block text-sm">2 x 90 µm</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 md:py-24 bg-slate-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-extrabold text-mm_navy">Mercados y Aplicaciones de Referencia</h2>
+                <div class="h-1 w-20 bg-mm_orange mx-auto mt-4"></div>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-6 max-w-6xl mx-auto text-center">
+                <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto text-mm_orange mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                    </div>
+                    <h4 class="font-bold text-mm_navy mb-2 text-sm md:text-base">Naves Industriales</h4>
+                    <p class="text-xs text-slate-500">Columnas estructurales, marcos y techos expuestos a la intemperie.</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto text-mm_orange mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    </div>
+                    <h4 class="font-bold text-mm_navy mb-2 text-sm md:text-base">Maquinaria y OEM</h4>
+                    <p class="text-xs text-slate-500">Componentes de maquinaria pesada, chasis de vehículos e implementos agrícolas.</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto text-mm_orange mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path></svg>
+                    </div>
+                    <h4 class="font-bold text-mm_navy mb-2 text-sm md:text-base">Silos y Almacenamiento</h4>
+                    <p class="text-xs text-slate-500">Tanques, tolvas y sistemas de silos agrícolas o industriales con alta agresividad química.</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto text-mm_orange mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                    </div>
+                    <h4 class="font-bold text-mm_navy mb-2 text-sm md:text-base">Infraestructura Costera</h4>
+                    <p class="text-xs text-slate-500">Pasamanos de puentes, barandillas, muelles y estructuras expuestas a salinidad severa.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-white border-t border-slate-200">
+        <div class="container mx-auto px-6 text-center max-w-3xl">
+            <h3 class="text-2xl md:text-3xl font-extrabold text-mm_navy mb-4">¿Tiene un proyecto de estructura o maquila en puerta?</h3>
+            <p class="text-slate-600 mb-8 leading-relaxed">
+                Nuestros ingenieros de superficies calcularán el espesor de capa y el sistema de secado óptimo según sus planos técnicos para cumplir con la durabilidad de servicio que exige su cliente.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="cotizar.html" class="bg-mm_navy text-white font-bold py-3 px-8 rounded shadow-lg hover:bg-slate-800 transition">
+                    Calcular Presupuesto con Planos
+                </a>
+                <a href="https://wa.me/525524493796?text=Hola,%20busco%20información%20sobre%20Pintura%20Industrial%20DTM-DTS" target="_blank" rel="noopener noreferrer" class="bg-mm_orange text-white font-bold py-3 px-8 rounded shadow-lg hover:bg-orange-600 transition flex items-center justify-center gap-2">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M12.031 0C5.394 0 0 5.394 0 12.031C0 14.654 0.852 17.07 2.274 19.034L0.518 24L5.617 22.257C7.513 23.493 9.704 24.185 12.031 24.185C18.667 24.185 24.062 18.791 24.062 12.154C24.062 5.518 18.667 0 12.031 0ZM12.031 22.146C10.026 22.146 8.163 21.576 6.577 20.617L6.2 20.393L2.738 21.558L3.921 18.175L3.666 17.771C2.569 16.082 1.942 14.116 1.942 12.031C1.942 6.471 6.471 1.942 12.031 1.942C17.59 1.942 22.119 6.471 22.119 12.031C22.119 17.59 17.59 22.146 12.031 22.146ZM17.606 15.176C17.3 15.023 15.801 14.283 15.526 14.181C15.251 14.08 15.047 14.029 14.843 14.334C14.639 14.639 14.078 15.302 13.899 15.506C13.721 15.71 13.542 15.735 13.237 15.582C12.931 15.429 11.948 15.109 10.785 14.072C9.822 13.213 9.157 12.203 8.979 11.897C8.801 11.592 8.96 11.426 9.113 11.274C9.25 11.137 9.418 10.923 9.571 10.745C9.724 10.567 9.775 10.44 9.877 10.236C9.979 10.032 9.928 9.854 9.852 9.701C9.775 9.549 9.113 7.919 8.833 7.257C8.56 6.611 8.282 6.7 8.088 6.69C7.904 6.681 7.701 6.681 7.497 6.681C7.293 6.681 6.962 6.757 6.682 7.063C6.402 7.368 5.612 8.081 5.612 9.533C5.612 10.985 6.709 12.387 6.862 12.591C7.015 12.795 8.941 15.765 11.905 17.042C12.61 17.346 13.161 17.53 13.593 17.669C14.3 17.893 14.945 17.861 15.457 17.785C16.03 17.7 17.3 17.013 17.555 16.249C17.81 15.485 17.81 14.823 17.606 15.176Z"/></svg>
+                    Asesoría WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-mm_navy text-white py-12 border-t border-blue-900 mt-auto">
+        <div class="container mx-auto px-6 grid md:grid-cols-3 gap-8 text-sm">
+            <div>
+                <span class="font-heading font-extrabold text-xl tracking-tight uppercase">M&M COATINGS</span>
+                <p class="text-blue-200 mt-4 leading-relaxed max-w-xs">
+                    Ingeniería de Superficies Certificada. Comprometidos con la calidad y la trazabilidad digital.
+                </p>
+            </div>
+            <div>
+                <h4 class="font-bold text-mm_orange mb-4 uppercase tracking-wider text-xs">Ubicación Planta</h4>
+                <p class="text-blue-100 leading-relaxed font-semibold">
+                   Tarento 33<br>
+                   Chipilo de Francisco Javier Mina<br>
+                   CP 74325, Puebla
+                </p>
+            </div>
+            <div class="md:text-right flex flex-col md:items-end">
+                <h4 class="font-bold text-mm_orange mb-4 uppercase tracking-wider text-xs font-heading">Contacto Directo</h4>
+                <a href="mailto:ventas@mmcoatings.com.mx" class="block text-lg font-bold hover:text-mm_orange transition mb-2">ventas@mmcoatings.com.mx</a>
+                <div class="flex gap-2 justify-start md:justify-end mt-4">
+                     <span class="bg-white/10 px-2 py-1 rounded text-[10px] font-bold border border-white/20">ISO 9001:2015</span>
+                     <span class="bg-white/10 px-2 py-1 rounded text-[10px] font-bold border border-white/20">Dörken Lic.</span>
+                </div>
+            </div>
+        </div>
+        <div class="container mx-auto px-6 mt-12 pt-8 border-t border-blue-900 text-center text-[10px] opacity-40 uppercase tracking-widest">
+            &copy; 2026 M&M Coatings.
+        </div>
+    </footer>
+
+    <script>
+        let currentEnv = 'interior';
+
+        // Estructura de Datos extraída directamente de los folletos técnicos de Dörken
+        const corrosivityData = {
+            interior: [
+                {
+                    text: 'Edificios con calefacción, oficinas, tiendas o escuelas',
+                    class: 'C1 (Insignificante)',
+                    title: 'Ambiente Interior de Nula Corrosión',
+                    desc: 'Habitaciones con calefacción limpia donde no existe riesgo de condensación de humedad ni vapores corrosivos.',
+                    system: '1K DTM Protop Satin',
+                    dft: '60 µm (Suficiente protección mecánica)'
+                },
+                {
+                    text: 'Edificios industriales sin calefacción, almacenes o talleres',
+                    class: 'C2 (Bajo)',
+                    title: 'Ambiente Interior de Corrosión Leve',
+                    desc: 'Zonas cubiertas donde puede existir condensación de humedad esporádica sin agentes contaminantes agresivos.',
+                    system: '1K DTM Protop Satin',
+                    dft: '80 µm (Capa única directa)'
+                },
+                {
+                    text: 'Espacios de producción con alta humedad (cervecerías, lavanderías, lácteos)',
+                    class: 'C3 (Moderado)',
+                    title: 'Ambiente Interior de Corrosión Media',
+                    desc: 'Entornos de procesamiento de alimentos o manufactura con condensación constante de vapor de agua y trazas de limpiadores.',
+                    system: '2K DTS Matt / Satin',
+                    dft: '2 x 90 µm (Máxima durabilidad industrial)'
+                },
+                {
+                    text: 'Plantas químicas, piscinas de natación o astilleros costeros',
+                    class: 'C4 (Fuerte)',
+                    title: 'Ambiente Interior de Corrosión Severa',
+                    desc: 'Presencia constante de humedad relativa alta, salinidad o gases químicos de procesos industriales activos.',
+                    system: '2K DTS Matt / Satin',
+                    dft: '2 x 90 µm (Con aditivo endurecedor universal)'
+                }
+            ],
+            exterior: [
+                {
+                    text: 'Zonas rurales o campestres con baja contaminación',
+                    class: 'C2 (Bajo)',
+                    title: 'Ambiente Exterior Rural',
+                    desc: 'Atmósferas no contaminadas, campos abiertos con baja incidencia de dióxido de azufre o cloruros.',
+                    system: '1K DTM Protop Satin',
+                    dft: '80 µm (Gran estabilidad UV a largo plazo)'
+                },
+                {
+                    text: 'Zonas urbanas e industriales con moderado dióxido de azufre',
+                    class: 'C3 (Moderado)',
+                    title: 'Ambiente Exterior Urbano / Industrial',
+                    desc: 'Zonas residenciales o zonas de manufactura media con exposición ambiental común a emisiones de tráfico o calderas.',
+                    system: '1K DTM o 2K DTS',
+                    dft: '1 x 80 µm o 2 x 90 µm según vida de servicio esperada'
+                },
+                {
+                    text: 'Zonas industriales en el interior o costas con salinidad moderada',
+                    class: 'C4 (Fuerte)',
+                    title: 'Ambiente Exterior Costero / Químico',
+                    desc: 'Áreas industriales pesadas en tierra continental o zonas de costa con moderado oleaje y presencia de sales marinas en el viento.',
+                    system: '2K DTS Matt / Satin',
+                    dft: '2 x 90 µm (Excelente resistencia a agentes químicos)'
+                },
+                {
+                    text: 'Zonas industriales de alta humedad o áreas costeras con alta salinidad',
+                    class: 'C5 (Muy Alto)',
+                    title: 'Ambiente Exterior Acérrimo / Marino',
+                    desc: 'Áreas industriales agresivas con humedad extrema, puentes marítimos o muelles marinos con alta salinidad continua.',
+                    system: '2K DTS Matt / Satin',
+                    dft: '2 x 90 µm (Excelente protección marina anticorrosión)'
+                },
+                {
+                    text: 'Costa afuera con alto contenido de sal (plataformas petroleras, parques eólicos marinos)',
+                    class: 'Cx (Extremo)',
+                    title: 'Ambiente Exterior de Exposición Extrema',
+                    desc: 'Estructuras marítimas de alta mar o ambientes tropicales extremos de agresión constante.',
+                    system: 'Consultar con Ingeniería de M&M Coatings',
+                    dft: 'Esquema multicapa personalizado'
+                }
+            ]
+        };
+
+        function setEnvironment(env) {
+            currentEnv = env;
+            
+            // Estilos de botones activos/inactivos
+            const btnInt = document.getElementById('btn-interior');
+            const btnExt = document.getElementById('btn-exterior');
+            
+            if (env === 'interior') {
+                btnInt.className = "bg-mm_orange text-white font-bold p-3 rounded-lg text-sm transition focus:outline-none flex flex-col items-center gap-1 border-2 border-transparent";
+                btnExt.className = "bg-slate-700 text-slate-300 font-bold p-3 rounded-lg text-sm transition focus:outline-none flex flex-col items-center gap-1 border-2 border-transparent hover:bg-slate-650";
+            } else {
+                btnExt.className = "bg-mm_orange text-white font-bold p-3 rounded-lg text-sm transition focus:outline-none flex flex-col items-center gap-1 border-2 border-transparent";
+                btnInt.className = "bg-slate-700 text-slate-300 font-bold p-3 rounded-lg text-sm transition focus:outline-none flex flex-col items-center gap-1 border-2 border-transparent hover:bg-slate-650";
+            }
+
+            // Repoblar select de condiciones
+            const select = document.getElementById('conditionSelect');
+            select.innerHTML = '';
+            
+            corrosivityData[env].forEach((item, index) => {
+                const opt = document.createElement('option');
+                opt.value = index;
+                opt.textContent = item.text;
+                select.appendChild(opt);
+            });
+
+            calculateCorrosivity();
+        }
+
+        function calculateCorrosivity() {
+            const select = document.getElementById('conditionSelect');
+            const selectedIndex = select.value;
+            if (selectedIndex === "") return;
+
+            const data = corrosivityData[currentEnv][selectedIndex];
+
+            // Renderizar datos dinámicamente en el visor de ingeniería
+            document.getElementById('lblClass').innerText = "Clase: " + data.class;
+            document.getElementById('lblTitle').innerText = data.title;
+            document.getElementById('lblDescription').innerText = data.desc;
+            document.getElementById('lblRecommendedSystem').innerText = data.system;
+            document.getElementById('lblRecommendedDFT').innerText = data.dft;
+        }
+
+        // Inicializar en interior al cargar
+        window.onload = function() {
+            setEnvironment('interior');
+        };
+    </script>
+</body>
+</html>
