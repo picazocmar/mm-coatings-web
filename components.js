@@ -102,7 +102,7 @@ class UniversalFooter extends HTMLElement {
                 </div>
                 <div class="md:text-right flex flex-col md:items-end">
                     <h4 class="font-bold text-mm_orange mb-4 uppercase tracking-wider text-xs font-heading">Contacto Directo</h4>
-                    <a href="mailto:ventas@mmcoatings.com.mx" class="block text-lg font-bold hover:text-mm_orange transition mb-2">ventas@mmcoatings.com.mx</a>
+                    <a href="mailto:contacto@mmcoatings.mx" class="block text-lg font-bold hover:text-mm_orange transition mb-2">contacto@mmcoatings.mx</a>
                     
                     <!-- Enlace de WhatsApp Oficial -->
                     <a href="https://api.whatsapp.com/send?phone=522216523677&text=Hola,%20busco%20informaci%C3%B3n%20sobre%20sus%20recubrimientos." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-lg font-bold hover:text-[#25D366] transition mb-4">
