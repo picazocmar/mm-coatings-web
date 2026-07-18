@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratorio de Calidad y Ensayos - M&M Coatings</title>
+    
+    <!-- Carga del Archivo Maestro de Componentes -->
+    <script src="components.js" defer></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        mm_navy: '#1B315E',
+                        mm_orange: '#E86C1F',
+                        mm_gray: '#F3F4F6',
+                        mm_dark: '#0f172a',
+                    },
+                    fontFamily: {
+                        sans: ['Open Sans', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Open Sans', sans-serif; }
+        h1, h2, h3, h4, .nav-link { font-family: 'Montserrat', sans-serif; }
+        
+        .hero-laboratorio {
+            background-color: #000000; 
+            background-image: linear-gradient(
+                to right,
+                rgba(15, 23, 42, 1) 0%,
+                rgba(15, 23, 42, 1) 30%,
+                rgba(15, 23, 42, 0.8) 45%,
+                rgba(0, 0, 0, 0.6) 65%,
+                rgba(0, 0, 0, 0) 100%
+            ), url('laboratorio_macro.png');
+            background-position: right center;
+            background-repeat: no-repeat;
+            background-size: cover; 
+        }
+
+        @media (min-width: 768px) {
+            .hero-laboratorio {
+                background-size: auto 100%; 
+            }
+        }
+    </style>
+</head>
+<body class="text-slate-700 antialiased flex flex-col min-h-screen bg-slate-50">
+
+    <!-- LLAMADA AL MENÚ UNIVERSAL MAESTRO -->
+    <universal-nav></universal-nav>
+
+    <!-- Cabecera Hero con Ajuste Dinámico de Fondo -->
+    <header class="hero-laboratorio min-h-[60vh] md:min-h-[70vh] flex items-center relative pt-20">
+        <div class="container mx-auto px-6 relative z-10 text-white">
+            <div class="max-w-2xl">
+                <div class="inline-flex items-center gap-2 px-3 py-1 bg-mm_orange/20 border border-mm_orange text-mm_orange rounded mb-6">
+                    <span class="text-xs font-bold uppercase tracking-widest">Ensayos y Diagnóstico Avanzado</span>
+                </div>
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
+                    Laboratorio de Corrosión
+                </h1>
+                <p class="text-lg text-gray-300 mb-8 font-light leading-relaxed">
+                    Infraestructura especializada para la validación de recubrimientos. Ofrecemos capacidad de evaluación técnica tanto para piezas procesadas en nuestra planta como para componentes externos bajo esquemas de control normativos.
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sección Principal: La Tecnología Q-Fog -->
+    <section class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-7/12">
+                    <h4 class="text-mm_orange font-bold tracking-widest uppercase text-xs mb-2">Infraestructura Tecnológica</h4>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-mm_navy mb-6">Cámara de Niebla Salina Q-Fog CCT1100 </h2>
+                    <p class="text-slate-600 leading-relaxed mb-6">
+                        Equipados con la prestigiosa Cámara de Niebla Salina Q-Fog CCT1100, en M&M Coatings garantizamos la máxima precisión en ensayos de corrosión acelerada. Esta tecnología avanzada de diagnóstico nos permite someter componentes metálicos críticos a condiciones extremas de salinidad, humedad y temperatura.
+                    </p>
+                </div>
+                <div class="lg:w-5/12 w-full">
+                    <div class="bg-slate-50 border border-slate-200 rounded-xl p-6 shadow-md border-t-4 border-t-mm_orange">
+                        <h3 class="font-heading font-bold text-mm_navy text-lg mb-4 border-b border-gray-200 pb-2">Doble Modalidad de Servicio</h3>
+                        <ul class="space-y-4 text-sm text-slate-600">
+                            <li class="flex items-start">
+                                <span class="text-mm_orange text-lg mr-3 leading-none">✓</span>
+                                <span><strong>Validación Interna:</strong> Seguimiento estricto de planes de control para nuestros acabados de Zinc Flake, Fosfatizado y Pinturas DTM/DTS.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-mm_orange text-lg mr-3 leading-none">✓</span>
+                                <span><strong>Servicio de Maquila Externa:</strong> Laboratorio abierto a fabricantes, talleres y diseñadores para evaluar la resistencia a la corrosión de piezas con procesos externos.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-mm_orange text-lg mr-3 leading-none">✓</span>
+                                <span><strong>Diagnóstico Técnico:</strong> Entrega de registros de comportamiento estructural e inspección visual de oxidación bajo normas internacionales.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Secundaria: Filosofía de Trazabilidad -->
+    <section class="py-16 bg-mm_navy text-white">
+        <div class="container mx-auto px-6 max-w-4xl text-center">
+            <h2 class="text-2xl md:text-3xl font-heading font-extrabold mb-6">GARANTÍA DE DESEMPEÑO EN ENTORNOS REALES</h2>
+            <p class="text-gray-300 font-light leading-relaxed max-w-2xl mx-auto mb-8">
+                Ya sea para auditar de forma interna nuestros recubrimientos o para certificar la durabilidad de componentes fabricados fuera de nuestra planta, el laboratorio de M&M Coatings proporciona la certidumbre técnica, el rigor de ingeniería y la transparencia que tu cadena de valor necesita.
+            </p>
+            <div class="h-px w-24 bg-mm_orange mx-auto"></div>
+        </div>
+    </section>
+
+    <!-- Sección CTA Corregida -->
+    <section class="py-16 bg-slate-50 border-t border-slate-200">
+        <div class="container mx-auto px-6 text-center max-w-3xl">
+            <h3 class="text-2xl md:text-3xl font-extrabold text-mm_navy mb-4">¿Necesitas evaluar la resistencia de tus componentes?</h3>
+            <p class="text-slate-600 mb-8 leading-relaxed">
+                Nuestros ingenieros de superficies están listos para coordinar los parámetros de ensayo requeridos para tus piezas, ya sea bajo tu propio plan de control o para pruebas normadas abiertas al público.
+            </p>
+            <div class="flex justify-center">
+                <!-- Enlace oficial con SVG Limpio -->
+                <a href="https://api.whatsapp.com/send?phone=522216523677&text=Hola,%20busco%20informaci%C3%B3n%20sobre%20el%20servicio%20de%20maquila%20de%20C%C3%A1mara%20de%20Niebla%20Salina." target="_blank" rel="noopener noreferrer" class="bg-[#25D366] text-white font-bold py-3.5 px-8 rounded shadow-lg hover:bg-green-600 transition flex items-center justify-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+                    </svg>
+                    Agendar Ensayo en Cámara Salina
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- LLAMADA AL FOOTER UNIVERSAL Y BOTÓN WA -->
+    <universal-footer></universal-footer>
+    <whatsapp-button></whatsapp-button>
+
+</body>
+</html>

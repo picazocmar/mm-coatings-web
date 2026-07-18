@@ -11,6 +11,9 @@
     <meta property="og:image" content="MM_vectorized_HOR.png">
     <meta property="og:type" content="website">
 
+    <!-- Carga del Archivo Maestro de Componentes -->
+    <script src="components.js" defer></script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -35,39 +38,28 @@
         body { font-family: 'Open Sans', sans-serif; }
         h1, h2, h3, h4, .nav-link { font-family: 'Montserrat', sans-serif; }
         
-            .hero-section {
-                position: relative;
-                min-height: 100vh;
-                background-image: url('fondo_hero.jpg');
-                background-size: cover;
-                background-position: center center;
-                background-repeat: no-repeat;
-                overflow: hidden;
-            }
+        .hero-section {
+            position: relative;
+            min-height: 100vh;
+            background-image: url('fondo_hero.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            overflow: hidden;
+        }
 
-            .hero-section::before {
-                content: "";
-                position: absolute;
-                inset: 0;
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(11, 23, 52, 0.98) 0%, rgba(11, 23, 52, 0.95) 18%, rgba(11, 23, 52, 0.82) 35%, rgba(11, 23, 52, 0.55) 50%, rgba(11, 23, 52, 0.20) 70%, rgba(11, 23, 52, 0.00) 100%);
+            z-index: 1;
+        }
 
-                background:
-                    linear-gradient(
-                        90deg,
-                        rgba(11, 23, 52, 0.98) 0%,
-                        rgba(11, 23, 52, 0.95) 18%,
-                        rgba(11, 23, 52, 0.82) 35%,
-                        rgba(11, 23, 52, 0.55) 50%,
-                        rgba(11, 23, 52, 0.20) 70%,
-                        rgba(11, 23, 52, 0.00) 100%
-                    );
-
-                z-index: 1;
-            }
-
-            .hero-section > * {
-                position: relative;
-                z-index: 2;
-            }
+        .hero-section > * {
+            position: relative;
+            z-index: 2;
+        }
 
         .tech-bg {
             background-color: #0f172a;
@@ -87,57 +79,10 @@
 </head>
 <body class="text-slate-700 antialiased flex flex-col min-h-screen">
 
-    <!-- Bloque de Navegación Universal Unificado -->
-    <nav class="bg-white border-b border-gray-200 fixed w-full z-50 shadow-md transition-all duration-300">
-        <div class="container mx-auto px-6 h-20 md:h-24 flex justify-between items-center">
-            
-            <a href="index.html" class="flex items-center gap-4 shrink-0">
-                <img src="MM_vectorized_HOR.png" alt="M&M Coating" class="h-10 md:h-16 w-auto object-contain">
-            </a>
+    <!-- LLAMADA AL MENÚ UNIVERSAL MAESTRO -->
+    <universal-nav></universal-nav>
 
-            <!-- Menú Escritorio -->
-            <div class="hidden md:flex space-x-8 text-sm font-bold text-slate-600 items-center">
-                <div class="flex items-center px-3 py-1 bg-green-50 rounded border border-green-200">
-                    <span class="text-xs text-mm_navy font-extrabold">ISO 9001:2015</span>
-                    <svg class="w-4 h-4 ml-1 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                </div>
-                <a href="index.html" class="hover:text-mm_orange transition uppercase tracking-wide">Inicio</a>
-                <a href="index.html#soluciones" class="hover:text-mm_orange transition uppercase tracking-wide">Soluciones</a>
-                <a href="index.html#maquinaria" class="hover:text-mm_orange transition uppercase tracking-wide">Tecnología</a>
-                <!-- Enlace de Servicios (NUEVO) -->
-                <a href="servicios.html" class="hover:text-mm_orange transition uppercase tracking-wide text-mm_navy font-extrabold">Servicios</a>
-                
-                <!-- Enlace a Intranet ERP -->
-                <a href="https://script.google.com/macros/s/AKfycbzK639tehdQ-lqx-h9DfQaN3QqDe1p2KcAotXbA898ozInmiDRpwkrmf-wZY0lKDQ_HCQ/exec" target="_blank" rel="noopener noreferrer" class="hover:text-mm_navy text-slate-400 transition uppercase tracking-wide flex items-center gap-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                    </svg>
-                    Intranet
-                </a>
-
-                <a href="cotizar.html" class="ml-4 bg-mm_navy text-white px-6 py-3 rounded shadow hover:bg-mm_orange transition font-bold">
-                    Cotizar
-                </a>
-            </div>
-
-            <!-- Menú Móvil -->
-            <div class="md:hidden flex items-center gap-2">
-                <div class="flex items-center px-2 py-1 bg-green-50 rounded border border-green-200">
-                    <span class="text-[10px] text-mm_navy font-extrabold">ISO 9001</span>
-                </div>
-                <!-- Mini enlace a intranet en móvil -->
-                <a href="https://script.google.com/macros/s/AKfycbzK639tehdQ-lqx-h9DfQaN3QqDe1p2KcAotXbA898ozInmiDRpwkrmf-wZY0lKDQ_HCQ/exec" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-mm_navy px-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                    </svg>
-                </a>
-                <a href="cotizar.html" class="text-xs font-bold text-white bg-mm_navy px-4 py-2 rounded shadow">
-                    COTIZAR
-                </a>
-            </div>
-        </div>
-    </nav>
-
+    <!-- Header Hero con fondo premium -->
     <header class="hero-section min-h-[85vh] md:h-screen flex items-center relative pt-20 md:pt-0">
         <div class="container mx-auto px-6 relative z-10 text-white mt-8 md:mt-16">
             <div class="max-w-4xl">
@@ -178,6 +123,7 @@
         </div>
     </header>
 
+    <!-- Sección de Maquinaria y Tecnología -->
     <section id="maquinaria" class="py-16 md:py-24 tech-bg text-white relative overflow-hidden">
         <div class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-mm_navy/50 to-transparent pointer-events-none"></div>
         <div class="container mx-auto px-6 relative z-10">
@@ -206,6 +152,7 @@
         </div>
     </section>
 
+    <!-- Sección de Soluciones con 3 Columnas -->
     <section id="soluciones" class="py-16 md:py-24 bg-slate-50">
         <div class="container mx-auto px-6">
             <div class="text-center mb-12">
@@ -214,43 +161,49 @@
                 <p class="text-slate-600 max-w-2xl mx-auto font-bold uppercase tracking-wide text-xs">Sistemas validados por OEMs</p>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
                 
-                <div class="p-8 border-2 border-mm_navy shadow-xl rounded-xl bg-white relative overflow-hidden transform hover:-translate-y-1 transition duration-300 flex flex-col">
-                    <div class="absolute top-0 right-0 bg-mm_navy text-white text-xs font-bold px-4 py-1 rounded-bl uppercase tracking-wider">Premium</div>
-                    <div class="flex justify-between items-start mb-4">
-                        <div>
-                             <h3 class="font-bold text-mm_navy text-xl md:text-2xl mb-1">Zinc Flake</h3>
-                             <p class="text-xs font-bold text-mm_orange uppercase tracking-wide">Sistema Dörken</p>
+                <!-- Tarjeta 1: Zinc Flake -->
+                <div class="p-8 border-2 border-mm_navy shadow-xl rounded-xl bg-white relative overflow-hidden transform hover:-translate-y-1 transition duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="absolute top-0 right-0 bg-mm_navy text-white text-xs font-bold px-4 py-1 rounded-bl uppercase tracking-wider">Premium</div>
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                 <h3 class="font-bold text-mm_navy text-xl md:text-2xl mb-1">Zinc Flake</h3>
+                                 <p class="text-xs font-bold text-mm_orange uppercase tracking-wide">Sistema Dörken</p>
+                            </div>
+                            <img src="dorken_logo.png" alt="Dörken" class="h-10 w-auto object-contain opacity-90">
                         </div>
-                        <img src="dorken_logo.png" alt="Dörken" class="h-10 w-auto object-contain opacity-90">
-                    </div>
-                    
-                    <div class="bg-blue-50 p-4 rounded-lg mb-6 border border-blue-100">
-                        <p class="text-[10px] font-bold text-mm_navy uppercase mb-2 tracking-widest">Métodos de Aplicación:</p>
-                        <div class="flex gap-4 text-xs md:text-sm text-slate-700 font-bold">
-                            <span class="flex items-center"><span class="w-2 h-2 bg-mm_orange rounded-full mr-2"></span> Canasta (Dip Spin)</span>
-                            <span class="flex items-center"><span class="w-2 h-2 bg-mm_navy rounded-full mr-2"></span> Rack</span>
+                        
+                        <div class="bg-blue-50 p-4 rounded-lg mb-6 border border-blue-100">
+                            <p class="text-[10px] font-bold text-mm_navy uppercase mb-2 tracking-widest">Métodos de Aplicación:</p>
+                            <div class="flex flex-wrap gap-4 text-xs text-slate-700 font-bold">
+                                <span class="flex items-center"><span class="w-2 h-2 bg-mm_orange rounded-full mr-2"></span> Canasta (Dip Spin)</span>
+                                <span class="flex items-center"><span class="w-2 h-2 bg-mm_navy rounded-full mr-2"></span> Rack</span>
+                            </div>
+                        </div>
+
+                        <div class="text-sm text-slate-600 mb-6 space-y-2 leading-relaxed">
+                            <p><strong class="text-mm_navy">Base Coat:</strong> KL 100 / KL 120.</p>
+                            <p><strong class="text-mm_navy">Top Coat:</strong> Delta Seal Silver & Black.</p>
+                            <p><strong class="text-mm_navy">PFAS-Free:</strong> Delta Seal RZ.</p>
                         </div>
                     </div>
+                    <div>
+                        <ul class="text-xs text-slate-500 space-y-2 border-t border-gray-100 pt-4 mb-6">
+                            <li class="flex items-center"><span class="text-mm_orange font-bold mr-2">✓</span> Protección catódica superior.</li>
+                            <li class="flex items-center"><span class="text-mm_orange font-bold mr-2">✓</span> Sin fragilización por hidrógeno.</li>
+                        </ul>
 
-                    <div class="text-sm text-slate-600 mb-6 space-y-2 leading-relaxed">
-                        <p><strong class="text-mm_navy">Base Coat:</strong> KL 100 / KL 120.</p>
-                        <p><strong class="text-mm_navy">Top Coat:</strong> Delta Seal Silver & Black (Con/Sin coeficiente de fricción).</p>
-                        <p><strong class="text-mm_navy">PFAS-Free:</strong> Delta Seal RZ.</p>
+                        <a href="zinc-flake.html"
+                        class="w-full inline-flex items-center justify-center bg-mm_navy text-white px-5 py-3 rounded-lg font-bold text-sm hover:bg-mm_orange transition-all duration-300 shadow-md">
+                            Más Información →
+                        </a>
                     </div>
-                    <ul class="text-xs text-slate-500 space-y-2 border-t border-gray-100 pt-4 mb-6">
-                        <li class="flex items-center"><span class="text-mm_orange font-bold mr-2">✓</span> Protección catódica superior.</li>
-                        <li class="flex items-center"><span class="text-mm_orange font-bold mr-2">✓</span> Sin fragilización por hidrógeno.</li>
-                    </ul>
-
-                    <a href="zinc-flake.html"
-                    class="inline-flex items-center justify-center bg-mm_navy text-white px-5 py-3 rounded-lg font-bold text-sm hover:bg-mm_orange transition-all duration-300 shadow-md">
-                        Más Información →
-                    </a>
                 </div>
 
-                <div class="p-8 border border-slate-200 shadow rounded-xl bg-white hover:border-mm_orange transition flex flex-col justify-between">
+                <!-- Tarjeta 2: Fosfatizado -->
+                <div class="p-8 border border-slate-200 shadow rounded-xl bg-white hover:border-mm_orange transform hover:-translate-y-1 transition duration-300 flex flex-col justify-between">
                     <div>
                         <h3 class="font-bold text-mm_navy text-xl md:text-2xl mb-2">Fosfatizado</h3>
                         <p class="text-xs font-bold text-slate-400 uppercase mb-6 tracking-widest">Zinc y Manganeso</p>
@@ -259,68 +212,65 @@
                             Recubrimiento de conversión ideal para reducir la fricción en componentes móviles (powertrain) o como base de adherencia superior para procesos de vulcanizado y pintura.
                         </p>
                     </div>
-                    <ul class="text-xs text-slate-500 space-y-2 border-t border-gray-100 pt-4 mt-8 mb-6">
-                        <li class="flex items-center"><span class="text-mm_orange font-bold mr-2">✓</span> Propiedades lubricantes.</li>
-                        <li class="flex items-center"><span class="text-mm_orange font-bold mr-2">✓</span> Adherencia mejorada.</li>
-                    </ul>
+                    <div>
+                        <ul class="text-xs text-slate-500 space-y-2 border-t border-gray-100 pt-4 mt-8 mb-6">
+                            <li class="flex items-center"><span class="text-mm_orange font-bold mr-2">✓</span> Propiedades lubricantes.</li>
+                            <li class="flex items-center"><span class="text-mm_orange font-bold mr-2">✓</span> Adherencia mejorada.</li>
+                        </ul>
 
-                    <a href="fosfatizado.html"
-                    class="inline-flex items-center justify-center bg-mm_navy text-white px-5 py-3 rounded-lg font-bold text-sm hover:bg-mm_orange transition-all duration-300 shadow-md">
-                        Más Información →
-                    </a>
+                        <a href="fosfatizado.html"
+                        class="w-full inline-flex items-center justify-center bg-mm_navy text-white px-5 py-3 rounded-lg font-bold text-sm hover:bg-mm_orange transition-all duration-300 shadow-md">
+                            Más Información →
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 3: Pintura Industrial DTM/DTS -->
+                <div class="p-8 border-2 border-mm_navy shadow-xl rounded-xl bg-white relative overflow-hidden transform hover:-translate-y-1 transition duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="absolute top-0 right-0 bg-mm_navy text-white text-xs font-bold px-4 py-1 rounded-bl uppercase tracking-wider">Premium</div>
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                 <h3 class="font-bold text-mm_navy text-xl md:text-2xl mb-1">Pintura Industrial</h3>
+                                 <p class="text-xs font-bold text-mm_orange uppercase tracking-wide">DTM / DTS · Dörken®</p>
+                            </div>
+                            <img src="dorken_logo.png" alt="Dörken" class="h-10 w-auto object-contain opacity-90">
+                        </div>
+                        
+                        <div class="bg-blue-50 p-4 rounded-lg mb-6 border border-blue-100">
+                            <p class="text-[10px] font-bold text-mm_navy uppercase mb-2 tracking-widest">Sistemas Disponibles:</p>
+                            <div class="flex flex-wrap gap-4 text-xs text-slate-700 font-bold">
+                                <span class="flex items-center"><span class="w-2 h-2 bg-mm_orange rounded-full mr-2"></span> Monocomponente (1K)</span>
+                                <span class="flex items-center"><span class="w-2 h-2 bg-mm_navy rounded-full mr-2"></span> Bicomponente (2K)</span>
+                            </div>
+                        </div>
+
+                        <div class="text-sm text-slate-600 mb-6 space-y-2 leading-relaxed">
+                            <p>Sistemas de aplicación directa al metal sin imprimación previa.</p>
+                            <p>Optimización drástica de flujos en naves industriales.</p>
+                            <p>Certificación bajo norma <strong class="text-mm_navy">DIN EN ISO 12944</strong>.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <ul class="text-xs text-slate-500 space-y-2 border-t border-gray-100 pt-4 mt-8 mb-6">
+                            <li class="flex items-center"><span class="text-mm_orange font-bold mr-2">✓</span> Alta productividad sin imprimación.</li>
+                            <li class="flex items-center"><span class="text-mm_orange font-bold mr-2">✓</span> Resistencia anticorrosiva extrema.</li>
+                        </ul>
+
+                        <a href="pintura-industrial.html"
+                        class="w-full inline-flex items-center justify-center bg-mm_navy text-white px-5 py-3 rounded-lg font-bold text-sm hover:bg-mm_orange transition-all duration-300 shadow-md">
+                            Más Información →
+                        </a>
+                    </div>
                 </div>
 
             </div>
         </div>
     </section>
 
-    <footer class="bg-mm_navy text-white py-12 border-t border-blue-900 mt-auto">
-        <div class="container mx-auto px-6 grid md:grid-cols-3 gap-8 text-sm">
-            <div>
-                <span class="font-heading font-extrabold text-xl tracking-tight uppercase">M&M COATINGS</span>
-                <p class="text-blue-200 mt-4 leading-relaxed max-w-xs">
-                    Ingeniería de Superficies Certificada. Comprometidos con la calidad y la trazabilidad digital.
-                </p>
-            </div>
-            <div>
-                <h4 class="font-bold text-mm_orange mb-4 uppercase tracking-wider text-xs">Ubicación Planta</h4>
-                <p class="text-blue-100 leading-relaxed font-semibold">
-                   Tarento 33<br>
-                   Chipilo de Francisco Javier Mina<br>
-                   CP 74325, Puebla
-                </p>
-            </div>
-            <div class="md:text-right flex flex-col md:items-end">
-                <h4 class="font-bold text-mm_orange mb-4 uppercase tracking-wider text-xs font-heading">Contacto Directo</h4>
-                <a href="mailto:ventas@mmcoatings.com.mx" class="block text-lg font-bold hover:text-mm_orange transition mb-2">ventas@mmcoatings.com.mx</a>
-                
-                <!-- Enlace de WhatsApp en el Footer -->
-                <a href="https://wa.me/525524493796?text=Hola,%20busco%20informaci%C3%B3n%20sobre%20sus%20recubrimientos." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-lg font-bold hover:text-[#25D366] transition mb-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
-                    +52 Actualizar
-                </a>
-
-                <div class="flex gap-2 justify-start md:justify-end mt-4">
-                     <span class="bg-white/10 px-2 py-1 rounded text-[10px] font-bold border border-white/20">ISO 9001:2015</span>
-                     <span class="bg-white/10 px-2 py-1 rounded text-[10px] font-bold border border-white/20">Dörken Lic.</span>
-                </div>
-            </div>
-        </div>
-        <div class="container mx-auto px-6 mt-12 pt-8 border-t border-blue-900 text-center text-[10px] opacity-40 uppercase tracking-widest">
-            &copy; 2026 M&M Coatings.
-        </div>
-    </footer>
-
-    <!-- Botón Flotante de WhatsApp -->
-    <a href="https://wa.me/525524493796?text=Hola,%20busco%20informaci%C3%B3n%20sobre%20sus%20recubrimientos." 
-       target="_blank" 
-       rel="noopener noreferrer" 
-       class="fixed bottom-6 right-6 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:bg-green-500 transition-transform hover:scale-110 z-[1000] flex items-center justify-center"
-       aria-label="Soporte por WhatsApp">
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
-            <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
-        </svg>
-    </a>
+    <!-- LLAMADA AL FOOTER UNIVERSAL Y BOTÓN WA -->
+    <universal-footer></universal-footer>
+    <whatsapp-button></whatsapp-button>
 
 </body>
 </html>

@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pintura Industrial DTM/DTS - M&M Coatings</title>
+    
+    <!-- Carga del Archivo Maestro de Componentes -->
+    <script src="components.js" defer></script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -32,14 +36,14 @@
         .hero-pintura {
             background-color: #0f172a;
             background-image: linear-gradient(
-                to right,
-                rgba(15, 23, 42, 1) 0%,
-                rgba(15, 23, 42, 0.95) 30%,
-                rgba(15, 23, 42, 0.8) 50%,
-                rgba(0, 0, 0, 0.4) 75%,
-                rgba(0, 0, 0, 0) 100%
-            ), url('https://placehold.co/1920x1080/0f172a/ffffff?text=Pintura+Industrial+Dorken+High+Spec');
-            background-position: center right;
+                90deg,
+                rgba(15, 23, 42, 0.98) 0%,
+                rgba(15, 23, 42, 0.90) 25%,
+                rgba(15, 23, 42, 0.60) 50%,
+                rgba(15, 23, 42, 0.15) 75%,
+                rgba(15, 23, 42, 0.00) 100%
+            ), url('black_oxide_macro.png');
+            background-position: right center;
             background-repeat: no-repeat;
             background-size: cover; 
         }
@@ -47,57 +51,8 @@
 </head>
 <body class="text-slate-700 antialiased flex flex-col min-h-screen bg-slate-50">
 
-    <!-- Bloque de Navegación Universal Unificado -->
-    <nav class="bg-white border-b border-gray-200 fixed w-full z-50 shadow-md transition-all duration-300">
-        <div class="container mx-auto px-6 h-20 md:h-24 flex justify-between items-center">
-            
-            <a href="index.html" class="flex items-center gap-4 shrink-0">
-                <img src="MM_vectorized_HOR.png" alt="M&M Coating" class="h-10 md:h-16 w-auto object-contain">
-            </a>
-
-            <!-- Menú Escritorio -->
-            <div class="hidden md:flex space-x-8 text-sm font-bold text-slate-600 items-center">
-                <div class="flex items-center px-3 py-1 bg-green-50 rounded border border-green-200">
-                    <span class="text-xs text-mm_navy font-extrabold">ISO 9001:2015</span>
-                    <svg class="w-4 h-4 ml-1 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                </div>
-                <a href="index.html" class="hover:text-mm_orange transition uppercase tracking-wide">Inicio</a>
-                <a href="index.html#soluciones" class="hover:text-mm_orange transition uppercase tracking-wide">Soluciones</a>
-                <a href="index.html#maquinaria" class="hover:text-mm_orange transition uppercase tracking-wide">Tecnología</a>
-                <!-- Enlace de Servicios (NUEVO) -->
-                <a href="servicios.html" class="hover:text-mm_orange transition uppercase tracking-wide text-mm_navy font-extrabold">Servicios</a>
-                
-                <!-- Enlace a Intranet ERP -->
-                <a href="https://script.google.com/macros/s/AKfycbzK639tehdQ-lqx-h9DfQaN3QqDe1p2KcAotXbA898ozInmiDRpwkrmf-wZY0lKDQ_HCQ/exec" target="_blank" rel="noopener noreferrer" class="hover:text-mm_navy text-slate-400 transition uppercase tracking-wide flex items-center gap-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                    </svg>
-                    Intranet
-                </a>
-
-                <a href="cotizar.html" class="ml-4 bg-mm_navy text-white px-6 py-3 rounded shadow hover:bg-mm_orange transition font-bold">
-                    Cotizar
-                </a>
-            </div>
-
-            <!-- Menú Móvil -->
-            <div class="md:hidden flex items-center gap-2">
-                <div class="flex items-center px-2 py-1 bg-green-50 rounded border border-green-200">
-                    <span class="text-[10px] text-mm_navy font-extrabold">ISO 9001</span>
-                </div>
-                <!-- Mini enlace a intranet en móvil -->
-                <a href="https://script.google.com/macros/s/AKfycbzK639tehdQ-lqx-h9DfQaN3QqDe1p2KcAotXbA898ozInmiDRpwkrmf-wZY0lKDQ_HCQ/exec" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-mm_navy px-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                    </svg>
-                </a>
-                <a href="cotizar.html" class="text-xs font-bold text-white bg-mm_navy px-4 py-2 rounded shadow">
-                    COTIZAR
-                </a>
-            </div>
-        </div>
-    </nav>
-    
+    <!-- LLAMADA AL MENÚ UNIVERSAL MAESTRO -->
+    <universal-nav></universal-nav>
 
     <header class="hero-pintura min-h-[60vh] md:min-h-[75vh] flex items-center relative pt-20">
         <div class="container mx-auto px-6 relative z-10 text-white">
@@ -176,6 +131,7 @@
         </div>
     </section>
 
+    <!-- Calculador de Ambientes -->
     <section id="calculador" class="py-16 md:py-24 bg-slate-900 text-white relative">
         <div class="container mx-auto px-6 relative z-10">
             <div class="max-w-3xl mx-auto text-center mb-12">
@@ -239,6 +195,7 @@
         </div>
     </section>
 
+    <!-- Sección de Aplicaciones -->
     <section class="py-16 md:py-24 bg-slate-50">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
@@ -279,53 +236,28 @@
         </div>
     </section>
 
+    <!-- Sección de Llamada a la Acción (CTA) - CORREGIDO WA -->
     <section class="py-16 bg-white border-t border-slate-200">
         <div class="container mx-auto px-6 text-center max-w-3xl">
             <h3 class="text-2xl md:text-3xl font-extrabold text-mm_navy mb-4">¿Tiene un proyecto de estructura o maquila en puerta?</h3>
             <p class="text-slate-600 mb-8 leading-relaxed">
-                Nuestros ingenieros de superficies calcularán el espesor de capa y el sistema de secado óptimo según sus planos técnicos para cumplir con la durabilidad de servicio que exige su cliente.
+                Nuestros ingenieros de superficies calcularán el esquema idóneo y el espesor de capa recomendado para cumplir con la durabilidad de servicio que exige su cliente.
             </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="cotizar.html" class="bg-mm_navy text-white font-bold py-3 px-8 rounded shadow-lg hover:bg-slate-800 transition">
-                    Calcular Presupuesto con Planos
-                </a>
-                <a href="https://wa.me/525524493796?text=Hola,%20busco%20información%20sobre%20Pintura%20Industrial%20DTM-DTS" target="_blank" rel="noopener noreferrer" class="bg-mm_orange text-white font-bold py-3 px-8 rounded shadow-lg hover:bg-orange-600 transition flex items-center justify-center gap-2">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M12.031 0C5.394 0 0 5.394 0 12.031C0 14.654 0.852 17.07 2.274 19.034L0.518 24L5.617 22.257C7.513 23.493 9.704 24.185 12.031 24.185C18.667 24.185 24.062 18.791 24.062 12.154C24.062 5.518 18.667 0 12.031 0ZM12.031 22.146C10.026 22.146 8.163 21.576 6.577 20.617L6.2 20.393L2.738 21.558L3.921 18.175L3.666 17.771C2.569 16.082 1.942 14.116 1.942 12.031C1.942 6.471 6.471 1.942 12.031 1.942C17.59 1.942 22.119 6.471 22.119 12.031C22.119 17.59 17.59 22.146 12.031 22.146ZM17.606 15.176C17.3 15.023 15.801 14.283 15.526 14.181C15.251 14.08 15.047 14.029 14.843 14.334C14.639 14.639 14.078 15.302 13.899 15.506C13.721 15.71 13.542 15.735 13.237 15.582C12.931 15.429 11.948 15.109 10.785 14.072C9.822 13.213 9.157 12.203 8.979 11.897C8.801 11.592 8.96 11.426 9.113 11.274C9.25 11.137 9.418 10.923 9.571 10.745C9.724 10.567 9.775 10.44 9.877 10.236C9.979 10.032 9.928 9.854 9.852 9.701C9.775 9.549 9.113 7.919 8.833 7.257C8.56 6.611 8.282 6.7 8.088 6.69C7.904 6.681 7.701 6.681 7.497 6.681C7.293 6.681 6.962 6.757 6.682 7.063C6.402 7.368 5.612 8.081 5.612 9.533C5.612 10.985 6.709 12.387 6.862 12.591C7.015 12.795 8.941 15.765 11.905 17.042C12.61 17.346 13.161 17.53 13.593 17.669C14.3 17.893 14.945 17.861 15.457 17.785C16.03 17.7 17.3 17.013 17.555 16.249C17.81 15.485 17.81 14.823 17.606 15.176Z"/></svg>
-                    Asesoría WhatsApp
+            <div class="flex justify-center">
+                <!-- Botón de WhatsApp robusto de Meta con el número 522216523677 y SVG limpio -->
+                <a href="https://api.whatsapp.com/send?phone=522216523677&text=Hola,%20busco%20informaci%C3%B3n%20sobre%20Pintura%20Industrial%20DTM-DTS" target="_blank" rel="noopener noreferrer" class="bg-[#25D366] text-white font-bold py-3.5 px-8 rounded shadow-lg hover:bg-green-600 transition flex items-center justify-center gap-2 text-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+                    </svg>
+                    <span>Asesoría WhatsApp</span>
                 </a>
             </div>
         </div>
     </section>
 
-    <footer class="bg-mm_navy text-white py-12 border-t border-blue-900 mt-auto">
-        <div class="container mx-auto px-6 grid md:grid-cols-3 gap-8 text-sm">
-            <div>
-                <span class="font-heading font-extrabold text-xl tracking-tight uppercase">M&M COATINGS</span>
-                <p class="text-blue-200 mt-4 leading-relaxed max-w-xs">
-                    Ingeniería de Superficies Certificada. Comprometidos con la calidad y la trazabilidad digital.
-                </p>
-            </div>
-            <div>
-                <h4 class="font-bold text-mm_orange mb-4 uppercase tracking-wider text-xs">Ubicación Planta</h4>
-                <p class="text-blue-100 leading-relaxed font-semibold">
-                   Tarento 33<br>
-                   Chipilo de Francisco Javier Mina<br>
-                   CP 74325, Puebla
-                </p>
-            </div>
-            <div class="md:text-right flex flex-col md:items-end">
-                <h4 class="font-bold text-mm_orange mb-4 uppercase tracking-wider text-xs font-heading">Contacto Directo</h4>
-                <a href="mailto:ventas@mmcoatings.com.mx" class="block text-lg font-bold hover:text-mm_orange transition mb-2">ventas@mmcoatings.com.mx</a>
-                <div class="flex gap-2 justify-start md:justify-end mt-4">
-                     <span class="bg-white/10 px-2 py-1 rounded text-[10px] font-bold border border-white/20">ISO 9001:2015</span>
-                     <span class="bg-white/10 px-2 py-1 rounded text-[10px] font-bold border border-white/20">Dörken Lic.</span>
-                </div>
-            </div>
-        </div>
-        <div class="container mx-auto px-6 mt-12 pt-8 border-t border-blue-900 text-center text-[10px] opacity-40 uppercase tracking-widest">
-            &copy; 2026 M&M Coatings.
-        </div>
-    </footer>
+    <!-- LLAMADA AL FOOTER UNIVERSAL Y BOTÓN WA -->
+    <universal-footer></universal-footer>
+    <whatsapp-button></whatsapp-button>
 
     <script>
         let currentEnv = 'interior';

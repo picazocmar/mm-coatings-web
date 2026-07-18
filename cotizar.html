@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cotizar Proyecto | M&M Coatings</title>
+
+    <!-- Carga del Archivo Maestro de Componentes -->
+    <script src="components.js" defer></script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -27,56 +31,8 @@
 </head>
 <body class="bg-slate-50 font-sans text-slate-800 flex flex-col min-h-screen">
 
-    <!-- Bloque de Navegación Universal Unificado -->
-    <nav class="bg-white border-b border-gray-200 fixed w-full z-50 shadow-md transition-all duration-300">
-        <div class="container mx-auto px-6 h-20 md:h-24 flex justify-between items-center">
-            
-            <a href="index.html" class="flex items-center gap-4 shrink-0">
-                <img src="MM_vectorized_HOR.png" alt="M&M Coating" class="h-10 md:h-16 w-auto object-contain">
-            </a>
-
-            <!-- Menú Escritorio -->
-            <div class="hidden md:flex space-x-8 text-sm font-bold text-slate-600 items-center">
-                <div class="flex items-center px-3 py-1 bg-green-50 rounded border border-green-200">
-                    <span class="text-xs text-mm_navy font-extrabold">ISO 9001:2015</span>
-                    <svg class="w-4 h-4 ml-1 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                </div>
-                <a href="index.html" class="hover:text-mm_orange transition uppercase tracking-wide">Inicio</a>
-                <a href="index.html#soluciones" class="hover:text-mm_orange transition uppercase tracking-wide">Soluciones</a>
-                <a href="index.html#maquinaria" class="hover:text-mm_orange transition uppercase tracking-wide">Tecnología</a>
-                <!-- Enlace de Servicios (NUEVO) -->
-                <a href="servicios.html" class="hover:text-mm_orange transition uppercase tracking-wide text-mm_navy font-extrabold">Servicios</a>
-                
-                <!-- Enlace a Intranet ERP -->
-                <a href="https://script.google.com/macros/s/AKfycbzK639tehdQ-lqx-h9DfQaN3QqDe1p2KcAotXbA898ozInmiDRpwkrmf-wZY0lKDQ_HCQ/exec" target="_blank" rel="noopener noreferrer" class="hover:text-mm_navy text-slate-400 transition uppercase tracking-wide flex items-center gap-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                    </svg>
-                    Intranet
-                </a>
-
-                <a href="cotizar.html" class="ml-4 bg-mm_navy text-white px-6 py-3 rounded shadow hover:bg-mm_orange transition font-bold">
-                    Cotizar
-                </a>
-            </div>
-
-            <!-- Menú Móvil -->
-            <div class="md:hidden flex items-center gap-2">
-                <div class="flex items-center px-2 py-1 bg-green-50 rounded border border-green-200">
-                    <span class="text-[10px] text-mm_navy font-extrabold">ISO 9001</span>
-                </div>
-                <!-- Mini enlace a intranet en móvil -->
-                <a href="https://script.google.com/macros/s/AKfycbzK639tehdQ-lqx-h9DfQaN3QqDe1p2KcAotXbA898ozInmiDRpwkrmf-wZY0lKDQ_HCQ/exec" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-mm_navy px-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                    </svg>
-                </a>
-                <a href="cotizar.html" class="text-xs font-bold text-white bg-mm_navy px-4 py-2 rounded shadow">
-                    COTIZAR
-                </a>
-            </div>
-        </div>
-    </nav>
+    <!-- LLAMADA AL MENÚ UNIVERSAL MAESTRO -->
+    <universal-nav></universal-nav>
 
     <!-- Contenedor con espacio superior para compensar el Menú Universal Fijo (pt-24 md:pt-32) -->
     <main class="flex-grow max-w-3xl w-full mx-auto px-4 pt-28 md:pt-36 pb-12">
@@ -232,9 +188,12 @@
         </div>
     </div>
 
+    <!-- LLAMADA AL FOOTER UNIVERSAL Y BOTÓN WA -->
+    <universal-footer></universal-footer>
+    <whatsapp-button></whatsapp-button>
+
     <script>
         // URL DE IMPLEMENTACIÓN DE GOOGLE APPS SCRIPT
-        // Reemplaza esta URL con la dirección exacta que te dé tu Apps Script al publicar
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx4xrKGd8ayMoacIjxKuus_j0i0Z05Jd8goeexxc5X0i9Ogmovx8qOrncLA3aUmdZ_X/exec";
 
         document.getElementById('cotizacionForm').addEventListener('submit', function(e) {
@@ -249,7 +208,6 @@
             const txtFolio = document.getElementById('txtFolio');
             const txtError = document.getElementById('txtError');
             
-            // Bloqueo del botón y apertura del modal de carga sin alerts
             btn.disabled = true;
             modal.classList.remove('hidden');
             setTimeout(() => {
@@ -262,7 +220,6 @@
             const file = fileInput.files[0];
 
             if (file) {
-                // Validación estricta de tamaño (máximo 5MB para estabilidad del backend)
                 if (file.size > 5 * 1024 * 1024) {
                     loader.classList.add('hidden');
                     txtError.innerText = "El archivo PDF supera el límite máximo de 5 Megabytes. Reduzca el peso del plano antes de enviar.";
@@ -312,7 +269,6 @@
                 };
                 reader.readAsDataURL(file);
             } else {
-                // Envío directo de formulario si no se adjuntan planos
                 const searchParams = new URLSearchParams();
                 for (const pair of formData.entries()) {
                     searchParams.append(pair[0], pair[1] || "No especificado");
