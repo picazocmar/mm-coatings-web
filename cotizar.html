@@ -73,7 +73,7 @@
                     <h2 class="text-xs font-bold text-mm_orange uppercase tracking-wider mb-3 border-b pb-1 border-slate-100">2. Especificaciones de Producción</h2>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                         <div class="md:col-span-2">
-                            <label class="block text-xs font-semibold text-slate-600 mb-1">Volumen de Producción Anual Estimado</label>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">Volumen de Producción Anual o Puntual Estimado</label>
                             <input type="number" name="produccion" placeholder="Ej. 50000" class="w-full border border-slate-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-mm_navy">
                         </div>
                         <div>
@@ -81,6 +81,7 @@
                             <select name="unidad" class="w-full border border-slate-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-mm_navy bg-white">
                                 <option value="Pzas">Piezas (Pzas)</option>
                                 <option value="Toneladas">Toneladas (Ton)</option>
+                                <option value="Metros Cuadrados">Metros Cuadrados (M2)</option>
                             </select>
                         </div>
                     </div>
@@ -91,6 +92,7 @@
                                 <option value="Zinc Flake (Dörken)">Zinc Flake (Dörken)</option>
                                 <option value="Fosfatizado de Zinc">Fosfatizado de Zinc</option>
                                 <option value="Fosfatizado de Manganeso">Fosfatizado de Manganeso</option>
+                                <option value="Pintura Industrial DTM/DTS">Pintura Industrial DTM/DTS</option>
                                 <option value="Por Definir">Por definir en base a plano</option>
                             </select>
                         </div>
@@ -194,7 +196,7 @@
 
     <script>
         // URL DE IMPLEMENTACIÓN DE GOOGLE APPS SCRIPT
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx4xrKGd8ayMoacIjxKuus_j0i0Z05Jd8goeexxc5X0i9Ogmovx8qOrncLA3aUmdZ_X/exec";
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby21tlyRTTn_ELVA_MQcJP8TuySB758RDlhHRvH5_w1gLenFHe61XiET-Z_3nJalyC3/exec";
 
         document.getElementById('cotizacionForm').addEventListener('submit', function(e) {
             e.preventDefault();
