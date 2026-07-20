@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buzón Fiscal | M&M Coatings</title>
+    
+    <!-- Carga del Archivo Maestro de Componentes -->
+    <script src="components.js" defer></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        mm_navy: '#1B315E',
+                        mm_orange: '#E86C1F',
+                        mm_gray: '#F3F4F6',
+                        mm_dark: '#0f172a',
+                    },
+                    fontFamily: {
+                        sans: ['Open Sans', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        .drag-active {
+            border-color: #E86C1F !important;
+            background-color: rgba(232, 108, 31, 0.05) !important;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 font-sans text-slate-800 flex flex-col min-h-screen">
+
+    <!-- LLAMADA AL MENÚ UNIVERSAL MAESTRO -->
+    <universal-nav></universal-nav>
+
+    <main class="flex-grow max-w-5xl w-full mx-auto px-4 pt-28 md:pt-36 pb-12">
+        <div class="bg-white rounded-xl shadow-xl border border-slate-200 overflow-hidden">
+            <!-- Banner de cabecera -->
+            <div class="bg-gradient-to-r from-mm_navy to-slate-800 p-8 text-white text-center">
+                <h1 class="font-heading font-semibold text-lg md:text-2xl leading-normal mb-2">
+                    Buzón Fiscal Automatizado
+                </h1>
+                <p class="text-sm text-blue-200 font-light max-w-2xl mx-auto">
+                    Recepción y conciliación de Comprobantes Fiscales Digitales (CFDI). Por favor, suba los archivos en pares (XML y PDF con el mismo nombre). Máximo 10 facturas por lote.
+                </p>
+            </div>
+
+            <div class="p-6 md:p-8 space-y-8">
+                
+                <!-- Zona de Arrastrar y Soltar -->
+                <div id="dropzone" class="border-2 border-dashed border-slate-300 rounded-xl p-10 text-center transition-all duration-300 hover:border-mm_navy bg-slate-50 relative cursor-pointer">
+                    <input type="file" id="fileInput" multiple accept=".xml,.pdf" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
+                    <div class="pointer-events-none">
+                        <svg class="mx-auto h-12 w-12 text-slate-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                        </svg>
+                        <h3 class="text-lg font-bold text-mm_navy mb-1">Arrastre sus archivos XML y PDF aquí</h3>
+                        <p class="text-xs text-slate-500 font-medium">O haga clic para examinar su computadora</p>
+                        <p class="text-[10px] text-mm_orange font-bold uppercase tracking-widest mt-4">Límite: 20 Archivos (10 Pares)</p>
+                    </div>
+                </div>
+
+                <!-- Estado del sistema (Cargando RFC, Errores, etc) -->
+                <div id="systemAlert" class="hidden bg-amber-50 border-l-4 border-amber-500 p-4 rounded text-sm text-amber-800">
+                    Conectando con el SAT...
+                </div>
+
+                <!-- Tabla de Validación -->
+                <div id="validationContainer" class="hidden">
+                    <h2 class="text-xs font-bold text-mm_navy uppercase tracking-wider mb-3 border-b pb-2 border-slate-200 flex justify-between">
+                        <span>Análisis de Pre-Carga</span>
+                        <span id="txtCount" class="text-mm_orange">0/10 Facturas</span>
+                    </h2>
+                    
+                    <div class="overflow-x-auto rounded-lg border border-slate-200 shadow-sm">
+                        <table class="min-w-full divide-y divide-slate-200 text-sm">
+                            <thead class="bg-slate-100">
+                                <tr>
+                                    <th class="px-4 py-3 text-left text-xs font-bold text-slate-500 uppercase tracking-wider">Factura (Nombre)</th>
+                                    <th class="px-4 py-3 text-center text-xs font-bold text-slate-500 uppercase tracking-wider">Archivos</th>
+                                    <th class="px-4 py-3 text-right text-xs font-bold text-slate-500 uppercase tracking-wider">Subtotal</th>
+                                    <th class="px-4 py-3 text-center text-xs font-bold text-slate-500 uppercase tracking-wider">Estatus RFC</th>
+                                    <!-- Nueva Columna para Eliminar -->
+                                    <th class="px-4 py-3 text-center text-xs font-bold text-slate-500 uppercase tracking-wider">Eliminar</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody" class="bg-white divide-y divide-slate-100">
+                                <!-- Filas generadas dinámicamente -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Botón de Envío -->
+                    <div class="mt-6 flex justify-end">
+                        <button id="btnEnviar" disabled class="bg-slate-300 text-slate-500 cursor-not-allowed font-heading font-semibold py-3 px-12 rounded shadow transition-colors tracking-wide text-sm flex items-center gap-2">
+                            <span>ENVIAR</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal de Carga -->
+    <div id="loaderModal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-[2000] hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-2xl p-8 text-center max-w-sm w-full">
+            <div class="animate-spin rounded-full h-12 w-12 border-4 border-slate-200 border-t-mm_orange mx-auto mb-4"></div>
+            <h3 id="loaderTitle" class="font-heading font-bold text-xl text-mm_navy mb-2">Procesando...</h3>
+            <!-- Texto descriptivo simplificado -->
+            <p id="loaderDesc" class="text-xs text-slate-500">Subiendo archivos a la nube para su validación.</p>
+            
+            <button id="btnCerrarModal" onclick="window.location.reload()" class="hidden mt-6 w-full bg-mm_navy text-white text-xs font-bold py-3 rounded hover:bg-slate-800">
+                FINALIZAR
+            </button>
+        </div>
+    </div>
+
+    <!-- LLAMADA AL FOOTER Y WHATSAPP -->
+    <universal-footer></universal-footer>
+    <whatsapp-button></whatsapp-button>
+
+    <script>
+        // ================= CONFIGURACIÓN =================
+        const SCRIPT_URL = "URL_DE_TU_APPS_SCRIPT_AQUI"; // ¡Reemplazar por el webhook publicado!
+        
+        let MI_RFC = ""; 
+        let currentFiles = {}; // Objeto para agrupar por nombre base
+        let canSubmit = false;
+
+        const dropzone = document.getElementById('dropzone');
+        const fileInput = document.getElementById('fileInput');
+        const tableBody = document.getElementById('tableBody');
+        const validationContainer = document.getElementById('validationContainer');
+        const btnEnviar = document.getElementById('btnEnviar');
+        const systemAlert = document.getElementById('systemAlert');
+
+        // ================= 1. INICIALIZACIÓN =================
+        window.onload = function() {
+            fetch(SCRIPT_URL + "?action=getRFC")
+                .then(res => res.json())
+                .then(data => {
+                    if(data.result === 'success') {
+                        MI_RFC = data.rfc;
+                        console.log("RFC Configurado:", MI_RFC);
+                    } else {
+                        showAlert("Error de conexión al cargar credenciales fiscales.", true);
+                    }
+                }).catch(e => {
+                    showAlert("El sistema backend no está en línea. Contacte a soporte.", true);
+                });
+        };
+
+        function showAlert(msg, isError) {
+            systemAlert.classList.remove('hidden');
+            systemAlert.innerText = msg;
+            if(isError) {
+                systemAlert.classList.replace('border-amber-500', 'border-red-500');
+                systemAlert.classList.replace('text-amber-800', 'text-red-800');
+                systemAlert.classList.replace('bg-amber-50', 'bg-red-50');
+            }
+        }
+
+        // ================= 2. EVENTOS DRAG & DROP =================
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropzone.addEventListener(eventName, preventDefaults, false);
+        });
+
+        function preventDefaults(e) { e.preventDefault(); e.stopPropagation(); }
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropzone.addEventListener(eventName, () => dropzone.classList.add('drag-active'), false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropzone.addEventListener(eventName, () => dropzone.classList.remove('drag-active'), false);
+        });
+
+        dropzone.addEventListener('drop', handleDrop, false);
+        fileInput.addEventListener('change', function() { handleFiles(this.files); });
+
+        function handleDrop(e) { handleFiles(e.dataTransfer.files); }
+
+        // ================= 3. LÓGICA DE AGRUPACIÓN Y LECTURA =================
+        function handleFiles(files) {
+            if(!MI_RFC) {
+                showAlert("Aún no se ha sincronizado el RFC maestro. Intente de nuevo en unos segundos.", true);
+                return;
+            }
+            
+            systemAlert.classList.add('hidden');
+            validationContainer.classList.remove('hidden');
+            
+            // Límite de 20 archivos (10 pares)
+            if(Object.keys(currentFiles).length * 2 + files.length > 20) {
+                showAlert("Ha superado el límite de 10 facturas por lote.", true);
+                return;
+            }
+
+            Array.from(files).forEach(file => {
+                const ext = file.name.split('.').pop().toLowerCase();
+                const baseName = file.name.substring(0, file.name.lastIndexOf('.'));
+
+                if(ext === 'xml' || ext === 'pdf') {
+                    if(!currentFiles[baseName]) {
+                        currentFiles[baseName] = { xml: null, pdf: null, status: 'pending', data: {} };
+                    }
+                    currentFiles[baseName][ext] = file;
+                }
+            });
+
+            // Limpiamos el input para permitir que se pueda volver a seleccionar el mismo archivo si se elimina
+            fileInput.value = '';
+
+            procesarYValidar();
+        }
+
+        // ================= FUNCIÓN PARA ELIMINAR ARCHIVO INDIVIDUAL =================
+        window.eliminarArchivo = function(baseName) {
+            delete currentFiles[baseName];
+            procesarYValidar();
+            
+            // Si borramos todo, ocultamos la tabla
+            if(Object.keys(currentFiles).length === 0) {
+                validationContainer.classList.add('hidden');
+            }
+        };
+
+        async function procesarYValidar() {
+            tableBody.innerHTML = '';
+            let allValid = true;
+            let groupCount = 0;
+
+            for (const baseName in currentFiles) {
+                groupCount++;
+                const group = currentFiles[baseName];
+                let rowHtml = `<td class="px-4 py-3 font-medium text-mm_navy truncate max-w-xs" title="${baseName}">${baseName}</td>`;
+                
+                // Validación 1: Pares completos
+                if(group.xml && group.pdf) {
+                    rowHtml += `<td class="px-4 py-3 text-center"><span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs font-bold">XML + PDF</span></td>`;
+                    
+                    // Validación 2: Leer el XML localmente
+                    if(group.status === 'pending') {
+                        await leerXML(group);
+                    }
+
+                    if(group.status === 'valid') {
+                        rowHtml += `<td class="px-4 py-3 text-right font-bold text-slate-700">$${group.data.subtotal} <span class="text-[10px] text-slate-400">${group.data.moneda}</span></td>`;
+                        rowHtml += `<td class="px-4 py-3 text-center text-green-500"><svg class="w-5 h-5 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></td>`;
+                    } else {
+                        allValid = false;
+                        rowHtml += `<td class="px-4 py-3 text-right text-red-500 font-bold">-</td>`;
+                        // Badge de Error con texto ajustado
+                        rowHtml += `<td class="px-4 py-3 text-center"><span class="text-[10px] text-red-600 font-bold bg-red-50 border border-red-100 px-2 py-1 rounded">${group.error}</span></td>`;
+                    }
+                } else {
+                    allValid = false;
+                    rowHtml += `<td class="px-4 py-3 text-center"><span class="bg-amber-100 text-amber-700 px-2 py-1 rounded text-xs font-bold">${group.xml ? 'Falta PDF' : 'Falta XML'}</span></td>`;
+                    rowHtml += `<td class="px-4 py-3 text-right text-slate-400">-</td><td class="px-4 py-3 text-center">-</td>`;
+                }
+
+                // Agregamos la columna final con el botón del basurero
+                const safeBaseName = baseName.replace(/'/g, "\\'");
+                rowHtml += `<td class="px-4 py-3 text-center">
+                                <button type="button" onclick="eliminarArchivo('${safeBaseName}')" class="text-slate-400 hover:text-red-500 transition-colors" title="Eliminar este archivo">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                                </button>
+                            </td>`;
+
+                tableBody.innerHTML += `<tr>${rowHtml}</tr>`;
+            }
+
+            document.getElementById('txtCount').innerText = `${groupCount}/10 Facturas`;
+
+            if(groupCount > 0 && allValid) {
+                btnEnviar.disabled = false;
+                btnEnviar.classList.replace('bg-slate-300', 'bg-mm_orange');
+                btnEnviar.classList.replace('text-slate-500', 'text-white');
+                btnEnviar.classList.replace('cursor-not-allowed', 'hover:bg-orange-600');
+            } else {
+                btnEnviar.disabled = true;
+                btnEnviar.classList.replace('bg-mm_orange', 'bg-slate-300');
+                btnEnviar.classList.replace('text-white', 'text-slate-500');
+                btnEnviar.classList.replace('hover:bg-orange-600', 'cursor-not-allowed');
+            }
+        }
+
+        // ================= 4. PARSER XML LOCAL =================
+        function leerXML(group) {
+            return new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        const text = e.target.result;
+                        const parser = new DOMParser();
+                        const xmlDoc = parser.parseFromString(text, "text/xml");
+                        
+                        // Encontrar etiquetas ignorando el Namespace (cfdi:)
+                        const emisor = xmlDoc.getElementsByTagNameNS("*", "Emisor")[0];
+                        const receptor = xmlDoc.getElementsByTagNameNS("*", "Receptor")[0];
+                        const comprobante = xmlDoc.getElementsByTagNameNS("*", "Comprobante")[0];
+                        
+                        if(!emisor || !receptor || !comprobante) throw new Error("XML Inválido");
+
+                        const rfcEmisor = emisor.getAttribute("Rfc").toUpperCase();
+                        const rfcReceptor = receptor.getAttribute("Rfc").toUpperCase();
+                        const subtotal = comprobante.getAttribute("SubTotal") || comprobante.getAttribute("Subtotal") || "0.00";
+                        const moneda = comprobante.getAttribute("Moneda") || "MXN";
+
+                        if(rfcEmisor === MI_RFC || rfcReceptor === MI_RFC) {
+                            group.status = 'valid';
+                            group.data = { subtotal: parseFloat(subtotal).toFixed(2), moneda: moneda };
+                        } else {
+                            group.status = 'error';
+                            // Texto simplificado de error
+                            group.error = 'No pertenece a esta empresa';
+                        }
+                    } catch(err) {
+                        group.status = 'error';
+                        group.error = 'Estructura Corrupta';
+                    }
+                    resolve();
+                };
+                reader.readAsText(group.xml);
+            });
+        }
+
+        // ================= 5. ENVÍO AL BACKEND =================
+        function getBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
+            });
+        }
+
+        btnEnviar.addEventListener('click', async () => {
+            const modal = document.getElementById('loaderModal');
+            const title = document.getElementById('loaderTitle');
+            const desc = document.getElementById('loaderDesc');
+            const btnCerrar = document.getElementById('btnCerrarModal');
+            const spinner = modal.querySelector('.animate-spin');
+
+            modal.classList.remove('hidden');
+
+            try {
+                let payload = { facturas: [] };
+                
+                for (const baseName in currentFiles) {
+                    const g = currentFiles[baseName];
+                    const xmlB64 = await getBase64(g.xml);
+                    const pdfB64 = await getBase64(g.pdf);
+                    
+                    payload.facturas.push({
+                        xmlName: g.xml.name,
+                        pdfName: g.pdf.name,
+                        xmlB64: xmlB64,
+                        pdfB64: pdfB64
+                    });
+                }
+
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    body: JSON.stringify(payload)
+                });
+                
+                const result = await response.json();
+
+                spinner.classList.add('hidden');
+                btnCerrar.classList.remove('hidden');
+
+                if(result.result === 'success') {
+                    // Texto simplificado de éxito
+                    title.innerText = "¡Proceso Exitoso!";
+                    title.classList.replace('text-mm_navy', 'text-green-600');
+                    desc.innerText = "Sus archivos fueron validados y enviados.";
+                } else {
+                    throw new Error(result.message);
+                }
+
+            } catch(error) {
+                spinner.classList.add('hidden');
+                btnCerrar.classList.remove('hidden');
+                title.innerText = "Error del Sistema";
+                title.classList.replace('text-mm_navy', 'text-red-600');
+                desc.innerText = "Ocurrió un error al procesar las facturas: " + error.message;
+            }
+        });
+
+    </script>
+</body>
+</html>
