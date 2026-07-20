@@ -30,20 +30,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     
     <style>
+        body { font-family: 'Open Sans', sans-serif; font-size: 1rem; -webkit-text-size-adjust: 100%; }
+        h1, h2, h3, h4, .nav-link { font-family: 'Montserrat', sans-serif; }
+        
         .drag-active {
             border-color: #E86C1F !important;
             background-color: rgba(232, 108, 31, 0.05) !important;
         }
     </style>
 </head>
-<body class="bg-slate-50 font-sans text-slate-800 flex flex-col min-h-screen">
+<body class="bg-slate-50 text-slate-800 flex flex-col min-h-screen">
 
     <!-- LLAMADA AL MENÚ UNIVERSAL MAESTRO -->
     <universal-nav></universal-nav>
 
     <main class="flex-grow max-w-5xl w-full mx-auto px-4 pt-28 md:pt-36 pb-12">
         <div class="bg-white rounded-xl shadow-xl border border-slate-200 overflow-hidden">
-            <!-- Banner de cabecera -->
+            
             <div class="bg-gradient-to-r from-mm_navy to-slate-800 p-8 text-white text-center">
                 <h1 class="font-heading font-semibold text-lg md:text-2xl leading-normal mb-2">
                     Buzón Fiscal Automatizado
@@ -68,16 +71,14 @@
                     </div>
                 </div>
 
-                <!-- Estado del sistema (Cargando RFC, Errores, etc) -->
                 <div id="systemAlert" class="hidden bg-amber-50 border-l-4 border-amber-500 p-4 rounded text-sm text-amber-800">
                     Conectando con el SAT...
                 </div>
 
-                <!-- Tabla de Validación -->
                 <div id="validationContainer" class="hidden">
                     <h2 class="text-xs font-bold text-mm_navy uppercase tracking-wider mb-3 border-b pb-2 border-slate-200 flex justify-between">
                         <span>Análisis de Pre-Carga</span>
-                        <span id="txtCount" class="text-mm_orange">0/10 Facturas</span>
+                        <span id="txtCount" class="text-mm_orange font-extrabold">0/10 Facturas</span>
                     </h2>
                     
                     <div class="overflow-x-auto rounded-lg border border-slate-200 shadow-sm">
@@ -88,19 +89,18 @@
                                     <th class="px-4 py-3 text-center text-xs font-bold text-slate-500 uppercase tracking-wider">Archivos</th>
                                     <th class="px-4 py-3 text-right text-xs font-bold text-slate-500 uppercase tracking-wider">Subtotal</th>
                                     <th class="px-4 py-3 text-center text-xs font-bold text-slate-500 uppercase tracking-wider">Estatus RFC</th>
-                                    <!-- Nueva Columna para Eliminar -->
-                                    <th class="px-4 py-3 text-center text-xs font-bold text-slate-500 uppercase tracking-wider">Eliminar</th>
+                                    <th class="px-4 py-3 text-center text-xs font-bold text-slate-500 uppercase tracking-wider">Borrar</th>
                                 </tr>
                             </thead>
                             <tbody id="tableBody" class="bg-white divide-y divide-slate-100">
-                                <!-- Filas generadas dinámicamente -->
+                                <!-- Filas dinámicas -->
                             </tbody>
                         </table>
                     </div>
 
                     <!-- Botón de Envío -->
                     <div class="mt-6 flex justify-end">
-                        <button id="btnEnviar" disabled class="bg-slate-300 text-slate-500 cursor-not-allowed font-heading font-semibold py-3 px-12 rounded shadow transition-colors tracking-wide text-sm flex items-center gap-2">
+                        <button id="btnEnviar" disabled class="bg-slate-300 text-slate-500 cursor-not-allowed font-heading font-bold py-3 px-12 rounded shadow transition-colors tracking-widest text-sm flex items-center gap-2">
                             <span>ENVIAR</span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                         </button>
@@ -110,15 +110,23 @@
         </div>
     </main>
 
-    <!-- Modal de Carga -->
+    <!-- Modal de Procesamiento Limpio -->
     <div id="loaderModal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-[2000] hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-xl shadow-2xl p-8 text-center max-w-sm w-full">
-            <div class="animate-spin rounded-full h-12 w-12 border-4 border-slate-200 border-t-mm_orange mx-auto mb-4"></div>
-            <h3 id="loaderTitle" class="font-heading font-bold text-xl text-mm_navy mb-2">Procesando...</h3>
-            <!-- Texto descriptivo simplificado -->
-            <p id="loaderDesc" class="text-xs text-slate-500">Subiendo archivos a la nube para su validación.</p>
+            <div id="spinnerIcon" class="animate-spin rounded-full h-12 w-12 border-4 border-slate-200 border-t-mm_orange mx-auto mb-4"></div>
             
-            <button id="btnCerrarModal" onclick="window.location.reload()" class="hidden mt-6 w-full bg-mm_navy text-white text-xs font-bold py-3 rounded hover:bg-slate-800">
+            <div id="successIcon" class="hidden w-16 h-16 bg-green-100 rounded-full items-center justify-center mx-auto mb-4 text-green-600">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+            </div>
+
+            <div id="errorIcon" class="hidden w-16 h-16 bg-red-100 rounded-full items-center justify-center mx-auto mb-4 text-red-600">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+            </div>
+
+            <h3 id="loaderTitle" class="font-heading font-extrabold text-xl text-mm_navy mb-2">Procesando...</h3>
+            <p id="loaderDesc" class="text-xs text-slate-500 font-medium">Subiendo archivos a la nube para su validación.</p>
+            
+            <button id="btnCerrarModal" onclick="window.location.reload()" class="hidden mt-6 w-full bg-slate-800 text-white text-xs font-bold py-3 rounded hover:bg-slate-900 tracking-widest">
                 FINALIZAR
             </button>
         </div>
@@ -129,11 +137,10 @@
     <whatsapp-button></whatsapp-button>
 
     <script>
-        // ================= CONFIGURACIÓN =================
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwOSXFvAcmfTekW5Wq8wWoXvacmtbHtoiR9-8AZDSLrtxWHDbssbRcbfHqrZZ6SaoLX/exec"; // ¡Reemplazar por el webhook publicado!
         
         let MI_RFC = ""; 
-        let currentFiles = {}; // Objeto para agrupar por nombre base
+        let currentFiles = {}; 
         let canSubmit = false;
 
         const dropzone = document.getElementById('dropzone');
@@ -143,7 +150,6 @@
         const btnEnviar = document.getElementById('btnEnviar');
         const systemAlert = document.getElementById('systemAlert');
 
-        // ================= 1. INICIALIZACIÓN =================
         window.onload = function() {
             fetch(SCRIPT_URL + "?action=getRFC")
                 .then(res => res.json())
@@ -169,27 +175,17 @@
             }
         }
 
-        // ================= 2. EVENTOS DRAG & DROP =================
-        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-            dropzone.addEventListener(eventName, preventDefaults, false);
-        });
-
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => { dropzone.addEventListener(eventName, preventDefaults, false); });
         function preventDefaults(e) { e.preventDefault(); e.stopPropagation(); }
 
-        ['dragenter', 'dragover'].forEach(eventName => {
-            dropzone.addEventListener(eventName, () => dropzone.classList.add('drag-active'), false);
-        });
-
-        ['dragleave', 'drop'].forEach(eventName => {
-            dropzone.addEventListener(eventName, () => dropzone.classList.remove('drag-active'), false);
-        });
+        ['dragenter', 'dragover'].forEach(eventName => { dropzone.addEventListener(eventName, () => dropzone.classList.add('drag-active'), false); });
+        ['dragleave', 'drop'].forEach(eventName => { dropzone.addEventListener(eventName, () => dropzone.classList.remove('drag-active'), false); });
 
         dropzone.addEventListener('drop', handleDrop, false);
         fileInput.addEventListener('change', function() { handleFiles(this.files); });
 
         function handleDrop(e) { handleFiles(e.dataTransfer.files); }
 
-        // ================= 3. LÓGICA DE AGRUPACIÓN Y LECTURA =================
         function handleFiles(files) {
             if(!MI_RFC) {
                 showAlert("Aún no se ha sincronizado el RFC maestro. Intente de nuevo en unos segundos.", true);
@@ -199,7 +195,6 @@
             systemAlert.classList.add('hidden');
             validationContainer.classList.remove('hidden');
             
-            // Límite de 20 archivos (10 pares)
             if(Object.keys(currentFiles).length * 2 + files.length > 20) {
                 showAlert("Ha superado el límite de 10 facturas por lote.", true);
                 return;
@@ -211,24 +206,19 @@
 
                 if(ext === 'xml' || ext === 'pdf') {
                     if(!currentFiles[baseName]) {
-                        currentFiles[baseName] = { xml: null, pdf: null, status: 'pending', data: {} };
+                        currentFiles[baseName] = { baseName: baseName, xml: null, pdf: null, status: 'pending', uuid: null, data: {} };
                     }
                     currentFiles[baseName][ext] = file;
                 }
             });
 
-            // Limpiamos el input para permitir que se pueda volver a seleccionar el mismo archivo si se elimina
             fileInput.value = '';
-
             procesarYValidar();
         }
 
-        // ================= FUNCIÓN PARA ELIMINAR ARCHIVO INDIVIDUAL =================
         window.eliminarArchivo = function(baseName) {
             delete currentFiles[baseName];
             procesarYValidar();
-            
-            // Si borramos todo, ocultamos la tabla
             if(Object.keys(currentFiles).length === 0) {
                 validationContainer.classList.add('hidden');
             }
@@ -242,13 +232,11 @@
             for (const baseName in currentFiles) {
                 groupCount++;
                 const group = currentFiles[baseName];
-                let rowHtml = `<td class="px-4 py-3 font-medium text-mm_navy truncate max-w-xs" title="${baseName}">${baseName}</td>`;
+                let rowHtml = `<td class="px-4 py-3 font-medium text-mm_navy truncate max-w-[12rem] md:max-w-xs" title="${baseName}">${baseName}</td>`;
                 
-                // Validación 1: Pares completos
                 if(group.xml && group.pdf) {
-                    rowHtml += `<td class="px-4 py-3 text-center"><span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs font-bold">XML + PDF</span></td>`;
+                    rowHtml += `<td class="px-4 py-3 text-center"><span class="bg-green-100 text-green-700 px-2 py-1 rounded text-[10px] font-extrabold uppercase">XML + PDF</span></td>`;
                     
-                    // Validación 2: Leer el XML localmente
                     if(group.status === 'pending') {
                         await leerXML(group);
                     }
@@ -259,20 +247,18 @@
                     } else {
                         allValid = false;
                         rowHtml += `<td class="px-4 py-3 text-right text-red-500 font-bold">-</td>`;
-                        // Badge de Error con texto ajustado
-                        rowHtml += `<td class="px-4 py-3 text-center"><span class="text-[10px] text-red-600 font-bold bg-red-50 border border-red-100 px-2 py-1 rounded">${group.error}</span></td>`;
+                        rowHtml += `<td class="px-4 py-3 text-center"><span class="text-[10px] text-red-600 font-bold bg-red-50 border border-red-100 px-2 py-1 rounded whitespace-nowrap">${group.error}</span></td>`;
                     }
                 } else {
                     allValid = false;
-                    rowHtml += `<td class="px-4 py-3 text-center"><span class="bg-amber-100 text-amber-700 px-2 py-1 rounded text-xs font-bold">${group.xml ? 'Falta PDF' : 'Falta XML'}</span></td>`;
+                    rowHtml += `<td class="px-4 py-3 text-center"><span class="bg-amber-100 text-amber-700 px-2 py-1 rounded text-[10px] font-extrabold uppercase">${group.xml ? 'Falta PDF' : 'Falta XML'}</span></td>`;
                     rowHtml += `<td class="px-4 py-3 text-right text-slate-400">-</td><td class="px-4 py-3 text-center">-</td>`;
                 }
 
-                // Agregamos la columna final con el botón del basurero
                 const safeBaseName = baseName.replace(/'/g, "\\'");
                 rowHtml += `<td class="px-4 py-3 text-center">
-                                <button type="button" onclick="eliminarArchivo('${safeBaseName}')" class="text-slate-400 hover:text-red-500 transition-colors" title="Eliminar este archivo">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                                <button type="button" onclick="eliminarArchivo('${safeBaseName}')" class="text-slate-400 hover:text-red-500 transition-colors bg-slate-100 hover:bg-red-50 p-2 rounded-full" title="Eliminar este archivo">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
                                 </button>
                             </td>`;
 
@@ -294,7 +280,6 @@
             }
         }
 
-        // ================= 4. PARSER XML LOCAL =================
         function leerXML(group) {
             return new Promise((resolve) => {
                 const reader = new FileReader();
@@ -304,13 +289,35 @@
                         const parser = new DOMParser();
                         const xmlDoc = parser.parseFromString(text, "text/xml");
                         
-                        // Encontrar etiquetas ignorando el Namespace (cfdi:)
                         const emisor = xmlDoc.getElementsByTagNameNS("*", "Emisor")[0];
                         const receptor = xmlDoc.getElementsByTagNameNS("*", "Receptor")[0];
                         const comprobante = xmlDoc.getElementsByTagNameNS("*", "Comprobante")[0];
+                        const complemento = xmlDoc.getElementsByTagNameNS("*", "Complemento")[0];
+                        const timbre = complemento ? complemento.getElementsByTagNameNS("*", "TimbreFiscalDigital")[0] : null;
                         
-                        if(!emisor || !receptor || !comprobante) throw new Error("XML Inválido");
+                        if(!emisor || !receptor || !comprobante || !timbre) throw new Error("XML Inválido");
 
+                        const uuidActual = timbre.getAttribute("UUID");
+                        
+                        // VALIDACIÓN 1: ¿Es duplicado en este mismo lote que el usuario arrastró?
+                        let esDuplicado = false;
+                        for(const key in currentFiles) {
+                            if(key !== group.baseName && currentFiles[key].uuid === uuidActual) {
+                                esDuplicado = true;
+                                break;
+                            }
+                        }
+
+                        if(esDuplicado) {
+                            group.status = 'error';
+                            group.error = 'Duplicado en Lote';
+                            resolve();
+                            return;
+                        }
+
+                        group.uuid = uuidActual;
+
+                        // VALIDACIÓN 2: Reglas de negocio (RFC)
                         const rfcEmisor = emisor.getAttribute("Rfc").toUpperCase();
                         const rfcReceptor = receptor.getAttribute("Rfc").toUpperCase();
                         const subtotal = comprobante.getAttribute("SubTotal") || comprobante.getAttribute("Subtotal") || "0.00";
@@ -321,12 +328,11 @@
                             group.data = { subtotal: parseFloat(subtotal).toFixed(2), moneda: moneda };
                         } else {
                             group.status = 'error';
-                            // Texto simplificado de error
                             group.error = 'No pertenece a esta empresa';
                         }
                     } catch(err) {
                         group.status = 'error';
-                        group.error = 'Estructura Corrupta';
+                        group.error = 'Archivo Corrupto';
                     }
                     resolve();
                 };
@@ -334,7 +340,6 @@
             });
         }
 
-        // ================= 5. ENVÍO AL BACKEND =================
         function getBase64(file) {
             return new Promise((resolve, reject) => {
                 const reader = new FileReader();
@@ -349,7 +354,10 @@
             const title = document.getElementById('loaderTitle');
             const desc = document.getElementById('loaderDesc');
             const btnCerrar = document.getElementById('btnCerrarModal');
-            const spinner = modal.querySelector('.animate-spin');
+            
+            const spinner = document.getElementById('spinnerIcon');
+            const sIcon = document.getElementById('successIcon');
+            const eIcon = document.getElementById('errorIcon');
 
             modal.classList.remove('hidden');
 
@@ -380,20 +388,23 @@
                 btnCerrar.classList.remove('hidden');
 
                 if(result.result === 'success') {
-                    // Texto simplificado de éxito
+                    sIcon.classList.remove('hidden');
+                    sIcon.classList.add('flex');
                     title.innerText = "¡Proceso Exitoso!";
                     title.classList.replace('text-mm_navy', 'text-green-600');
                     desc.innerText = "Sus archivos fueron validados y enviados.";
                 } else {
-                    throw new Error(result.message);
+                    throw new Error(result.message || "Error desconocido en el servidor");
                 }
 
             } catch(error) {
                 spinner.classList.add('hidden');
+                eIcon.classList.remove('hidden');
+                eIcon.classList.add('flex');
                 btnCerrar.classList.remove('hidden');
                 title.innerText = "Error del Sistema";
                 title.classList.replace('text-mm_navy', 'text-red-600');
-                desc.innerText = "Ocurrió un error al procesar las facturas: " + error.message;
+                desc.innerText = error.message;
             }
         });
 
